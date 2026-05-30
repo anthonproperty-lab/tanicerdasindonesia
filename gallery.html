@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Tani Cerdas Indonesia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg: #060b13;
+            --panel: #0f172a;
+            --panel-alt: #1e293b;
+            --primary: #10b981;
+            --primary-hover: #059669;
+            --accent: #3b82f6;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --radius: 16px;
+            --whatsapp: #25d366;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(8px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1e293b;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-home-btn {
+            background-color: var(--panel-alt);
+            border: 1px solid #334155;
+            color: var(--text);
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .back-home-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Header Section */
+        .gallery-header {
+            max-width: 1200px;
+            margin: 40px auto 20px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .gallery-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .gallery-header h1 span {
+            color: var(--primary);
+        }
+
+        .gallery-header p {
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filter Tabs */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 30px 0;
+        }
+
+        .filter-btn {
+            background-color: var(--panel);
+            border: 1px solid #1e293b;
+            color: var(--muted);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: #020617;
+            border-color: var(--primary);
+        }
+
+        /* Gallery Grid */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .gallery-item {
+            background-color: var(--panel);
+            border: 1px solid #1e293b;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .media-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #000;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .media-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .media-wrapper img {
+            transform: scale(1.05);
+        }
+
+        /* Play Button Overlay untuk Video */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .video-overlay i {
+            font-size: 3rem;
+            color: #fff;
+            opacity: 0.85;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .gallery-item:hover .video-overlay i {
+            transform: scale(1.15);
+            color: var(--primary);
+        }
+
+        .item-info {
+            padding: 15px;
+        }
+
+        .item-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .item-info p {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        /* Lightbox/Modal System */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(2, 6, 23, 0.95);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .lightbox-content iframe, .lightbox-content img {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* Floating WhatsApp Button */
+        .wa-floating {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--whatsapp);
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: wa-pulse 2s infinite;
+        }
+
+        @keyframes wa-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="Assets/logo_tci.jpg" alt="Logo" style="height: 40px; margin-right: 10px; vertical-align: middle;">
+            <span>Tani Cerdas Indonesia</span>
+        </div>
+        <a href="index.html" class="back-home-btn">
+            <i class="fa-solid fa-house"></i> Kembali ke Dashboard
+        </a>
+    </nav>
+
+    <div class="gallery-header">
+        <h1>Galeri Dokumentasi <span>Infrastruktur</span></h1>
+        <p>Dokumentasi pemasangan perangkat IoT, operasional greenhouse, dan bukti keberhasilan panen di lapangan.</p>
+    </div>
+
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterGallery('all')">Semua</button>
+        <button class="filter-btn" onclick="filterGallery('foto')">Foto</button>
+        <button class="filter-btn" onclick="filterGallery('video')">Video Sistem</button>
+    </div>
+
+    <div class="gallery-container">
+        
+        <div class="gallery-item video">
+            <div class="media-wrapper" onclick="openVideo('dQw4w9WgXcQ')">
+                <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Thumbnail Video">
+                <div class="video-overlay">
+                    <i class="fa-solid fa-circle-play"></i>
+                </div>
+            </div>
+            <div class="item-info">
+                <h3>Otomasi Fertigasi di Lahan Melon</h3>
+                <p><i class="fa-solid fa-video"></i> Video Operasional IoT</p>
+            </div>
+        </div>
+
+        <div class="gallery-item foto">
+            <div class="media-wrapper" onclick="openImage('Assets/greenhouse_1.jpg')">
+                <img src="Assets/greenhouse_1.jpg" alt="Pemasangan Sensor PLC">
+            </div>
+            <div class="item-info">
+                <h3>Instalasi Panel SCADA PLC</h3>
+                <p><i class="fa-solid fa-camera"></i> Foto Infrastruktur</p>
+            </div>
+        </div>
+
+        <div class="gallery-item video">
+            <div class="media-wrapper" onclick="openVideo('YOUR_YOUTUBE_ID_HERE')">
+                <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Thumbnail Video">
+                <div class="video-overlay">
+                    <i class="fa-solid fa-circle-play"></i>
+                </div>
+            </div>
+            <div class="item-info">
+                <h3>Uji Coba Drone Sprayer POC</h3>
+                <p><i class="fa-solid fa-video"></i> Video Lapangan</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <button class="close-lightbox" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i> Tutup</button>
+            <div id="lightbox-target" style="width: 100%; height: 100%;"></div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/6281234567890?text=Halo%20Tim%20Support%20Tani%20Cerdas%20Indonesia..." class="wa-floating" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const target = document.getElementById('lightbox-target');
+
+        // Buka Pop-up Video YouTube
+        function openVideo(youtubeId) {
+            target.innerHTML = `<iframe src="https://www.youtube.com/embed/${youtubeId}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            lightbox.classList.add('active');
+        }
+
+        // Buka Pop-up Gambar Ukuran Besar
+        function openImage(imageSrc) {
+            target.innerHTML = `<img src="${imageSrc}" style="object-fit: contain;">`;
+            lightbox.classList.add('active');
+        }
+
+        // Tutup Pop-up (dan hentikan suara video)
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            target.innerHTML = ''; // Menghapus iframe otomatis mematikan video
+        }
+
+        // Filter Kategori (Semua / Foto / Video)
+        function filterGallery(category) {
+            // Ubah status tombol aktif
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Sembunyikan atau tampilkan item
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'all') {
+                    item.style.display = 'block';
+                } else if (item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Tutup modal jika area luar diklik
+        lightbox.addEventListener('click', function(e) {
+            if(e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
