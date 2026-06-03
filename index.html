@@ -1041,7 +1041,7 @@ function submitOrder() {
     // Ambil data produk dan skema kemitraan aktif
     const produkData = productHierarchy[selectedInstrumen][selectedTipe];
     let modelText = selectedModelKemitraan === 'jual' ? 'Jual Putus' : (selectedModelKemitraan === 'sewa' ? 'Sewa Alat' : 'Investor');
-    const namaSistem Bersih = produkData.title.replace(/<[^>]*>?/gm, ''); // Membersihkan tag HTML/badge premium
+    const namaSistemBersih = produkData.title.replace(/<[^>]*>?/gm, ''); // Membersihkan tag HTML/badge premium
 
     // 2. Siapkan Objek Data untuk Google Sheets
     const dataKeSheets = {
