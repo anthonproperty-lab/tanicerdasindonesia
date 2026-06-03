@@ -948,9 +948,22 @@ function selectModel(model) {
         // Memanggil fungsi toast warning dengan pesan kustom
         showToastWarning("⚠️ Silakan pilih Kategori Sistem Tani & Paket terlebih dahulu di atas!");
         
-        // Scroll otomatis ke area pemilihan agar pengguna tidak bingung
-        const catalogSection = document.getElementById('catalog-title').parentElement;
-        catalogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+       // --- PERBAIKAN UTAMA: PAKSA SCROLL KE JUDUL PALING ATAS (PILIH KATEGORI SISTEM TANI) ---
+        const targetElement = document.getElementById('catalog-title');
+        
+        if (targetElement) {
+            // Hitung posisi absolut elemen judul paling atas dari ujung layar
+            const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            
+            // Kurangi 130 piksel agar posisi scroll lebih naik ke atas (Judul tidak akan tertutup banner/header)
+            // Anda bisa mengubah angka 130 ini menjadi 150 atau lebih besar jika dirasa masih kurang tinggi
+            const offsetPosition = elementPosition - 130; 
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
         return;
     }
     
