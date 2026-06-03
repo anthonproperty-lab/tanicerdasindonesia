@@ -820,123 +820,123 @@
         </div>
     </footer>
 
-      <div id="toastWarning" class="toast-hidden">
+      <div id="toastWarning">
     ⚠️ Silakan pilih Kategori Sistem Tani terlebih dahulu.
-      </div>
+</div>
 
     <script>
-    let perfChart = null;
-    let performanceHistory = [85.5, 88.2, 87.0, 92.5]; // Data telemetri dummy fallback
-    let selectedInstrumen = '';
-    let selectedTipe = '';
-    let selectedModelKemitraan = '';
+   let perfChart = null;
+let performanceHistory = [85.5, 88.2, 87.0, 92.5]; // Data telemetri dummy fallback
+let selectedInstrumen = '';
+let selectedTipe = '';
+let selectedModelKemitraan = '';
 
-    const productHierarchy = {
-        'greenhouse': {
-            'con': { title: 'Smart Greenhouse Lite', desc: 'Sistem pengatur suhu kipas exhaust otomatis serta pengabuan air (fogging) terjadwal untuk menjaga sayuran daun.', depo: 'Rp 12.500.000', tech: 'Microclimate Thermostat V1', profit: '10-15% Efisiensi Yield' },
-            'mod': { title: 'Smart Greenhouse Business <span class="badge-premium">Rekomendasi</span>', desc: 'Otomasi terintegrasi untuk melon premium dengan katup motorik pencampur nutrisi A & B secara real-time.', depo: 'Rp 38.000.000', tech: 'Dynamic EC Tuning Control', profit: '25-40% Hasil Produksi' },
-            'agg': { title: 'Smart Greenhouse Industrial AI', desc: 'Sistem aeroponik tertutup bertekanan tinggi dengan pemantauan defisiensi nutrisi daun berbasis AI vision server.', depo: 'Rp 75.000.000', tech: 'AI Vision & High-Pressure Aeroponic', profit: '55%++ Lonjakan Kuantitas' }
+const productHierarchy = {
+    'greenhouse': {
+        'con': { title: 'Smart Greenhouse Lite', desc: 'Sistem pengatur suhu kipas exhaust otomatis serta pengabuan air (fogging) terjadwal untuk menjaga sayuran daun.', depo: 'Rp 12.500.000', tech: 'Microclimate Thermostat V1', profit: '10-15% Efisiensi Yield' },
+        'mod': { title: 'Smart Greenhouse Business <span class="badge-premium">Rekomendasi</span>', desc: 'Otomasi terintegrasi untuk melon premium dengan katup motorik pencampur nutrisi A & B secara real-time.', depo: 'Rp 38.000.000', tech: 'Dynamic EC Tuning Control', profit: '25-40% Hasil Produksi' },
+        'agg': { title: 'Smart Greenhouse Industrial AI', desc: 'Sistem aeroponik tertutup bertekanan tinggi dengan pemantauan defisiensi nutrisi daun berbasis AI vision server.', depo: 'Rp 75.000.000', tech: 'AI Vision & High-Pressure Aeroponic', profit: '55%++ Lonjakan Kuantitas' }
+    },
+    'hydroponic': {
+        'con': { title: 'Vertical Hydroponic Rack Lite', desc: 'Instalasi rak bertingkat untuk keterbatasan lahan perkotaan dengan sistem pompa sirkulasi hemat daya.', depo: 'Rp 8.000.000', tech: 'Continuous Flow Loop', profit: '12-16% Yield/Bulan' },
+        'mod': { title: 'Vertical Farm LED Advanced', desc: 'Dilengkapi lampu penumbuh berspektrum penuh untuk budidaya dalam ruangan tanpa matahari konvensional.', depo: 'Rp 27.000.000', tech: 'Full-Spectrum LED Grow Lights', profit: '20-35% Siklus Dipercepat' },
+        'agg': { title: 'Vertical Enterprise AI Cluster', desc: 'Skema klaster multi-rak terkoneksi robotika pengatur tinggi pancaran LED adatif seiring fase vegetatif.', depo: 'Rp 90.000.000', tech: 'Adaptive Photoperiod Array', profit: '45%++ Efisiensi Ruang' }
+    },
+    'openfield': {
+        'con': { title: 'Open Field Irrigation Sensor Node', desc: 'Pemasangan katup selenoid yang terbuka otomatis berdasarkan kelembapan tanah di perkebunan cabai/bawang.', depo: 'Rp 5.500.000', tech: 'LoRa Soil Moisture Node', profit: '20% Penghematan Air' },
+        'mod': { title: 'Open Field Smart Fertigation Station', desc: 'Stasiun cuaca lokal yang memerintahkan injeksi pupuk ke saluran sprinkler secara prediktif sebelum penguapan ekstrem.', depo: 'Rp 19.500.000', tech: 'Weather-Predictive Fertigation', profit: '30% Efisiensi Pupuk' },
+        'agg': { title: 'Autonomous Open Field Macro Cluster', desc: 'Sistem katup terpusat berbasis satelit tanah nirkabel skala multi-hektar dengan proteksi kelebihan debit air air.', depo: 'Rp 45.000.000', tech: 'Decoupled Hydraulic Network AI', profit: '35%++ Hasil Agribisnis' }
+    },
+    'fertilizer': {
+        'con': { title: 'Pupuk Organik Cair Mikroba Aktif (POC)', desc: 'Konsentrat pupuk cair berbasis bakteri fiksasi nitrogen alami untuk mempercepat gemburnya tanah.', depo: 'Rp 150.000 / Liter', tech: 'Microbial Inoculant Blend', profit: '10-20% Kadar Rendemen' },
+        'mod': { title: 'Paket Bundling POC + Booster Buah', desc: 'Kombinasi asam amino esensial dan nutrisi makro organik siap serap untuk memicu pembungaan serempak.', depo: 'Rp 650.000 / Paket', tech: 'Amino-Acid Enriched Formula', profit: '25-35% Bobot Buah' },
+        'agg': { title: 'Suplai Konsentrat Organik Makro Skala Tonase', desc: 'Pasokan massal formula pupuk cair yang disesuaikan khusus dengan karakteristik sensor tanah lahan Anda.', depo: 'Hubungi Sales', tech: 'Customized Soil-Tailored Nutrient', profit: 'Skalabilitas Tinggi' }
+    }
+};
+
+// Fungsi Grafis Chart.js
+function updatePerfGraph(historyData) {
+    const ctx = document.getElementById('perfChart').getContext('2d');
+    const gradient = ctx.createLinearGradient(0, 0, 0, 150);
+    gradient.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
+    gradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
+
+    if (perfChart) perfChart.destroy();
+
+    perfChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: historyData.map((_, i) => i),
+            datasets: [{
+                data: historyData,
+                borderColor: '#10b981',
+                borderWidth: 3,
+                pointRadius: 4,
+                pointBackgroundColor: '#10b981',
+                pointBorderColor: '#060b13',
+                pointBorderWidth: 2,
+                fill: true,
+                backgroundColor: gradient,
+                tension: 0.35
+            }]
         },
-        'hydroponic': {
-            'con': { title: 'Vertical Hydroponic Rack Lite', desc: 'Instalasi rak bertingkat untuk keterbatasan lahan perkotaan dengan sistem pompa sirkulasi hemat daya.', depo: 'Rp 8.000.000', tech: 'Continuous Flow Loop', profit: '12-16% Yield/Bulan' },
-            'mod': { title: 'Vertical Farm LED Advanced', desc: 'Dilengkapi lampu penumbuh berspektrum penuh untuk budidaya dalam ruangan tanpa matahari konvensional.', depo: 'Rp 27.000.000', tech: 'Full-Spectrum LED Grow Lights', profit: '20-35% Siklus Dipercepat' },
-            'agg': { title: 'Vertical Enterprise AI Cluster', desc: 'Skema klaster multi-rak terkoneksi robotika pengatur tinggi pancaran LED adatif seiring fase vegetatif.', depo: 'Rp 90.000.000', tech: 'Adaptive Photoperiod Array', profit: '45%++ Efisiensi Ruang' }
-        },
-        'openfield': {
-            'con': { title: 'Open Field Irrigation Sensor Node', desc: 'Pemasangan katup selenoid yang terbuka otomatis berdasarkan kelembapan tanah di perkebunan cabai/bawang.', depo: 'Rp 5.500.000', tech: 'LoRa Soil Moisture Node', profit: '20% Penghematan Air' },
-            'mod': { title: 'Open Field Smart Fertigation Station', desc: 'Stasiun cuaca lokal yang memerintahkan injeksi pupuk ke saluran sprinkler secara prediktif sebelum penguapan ekstrem.', depo: 'Rp 19.500.000', tech: 'Weather-Predictive Fertigation', profit: '30% Efisiensi Pupuk' },
-            'agg': { title: 'Autonomous Open Field Macro Cluster', desc: 'Sistem katup terpusat berbasis satelit tanah nirkabel skala multi-hektar dengan proteksi kelebihan debit air air.', depo: 'Rp 45.000.000', tech: 'Decoupled Hydraulic Network AI', profit: '35%++ Hasil Agribisnis' }
-        },
-        'fertilizer': {
-            'con': { title: 'Pupuk Organik Cair Mikroba Aktif (POC)', desc: 'Konsentrat pupuk cair berbasis bakteri fiksasi nitrogen alami untuk mempercepat gemburnya tanah.', depo: 'Rp 150.000 / Liter', tech: 'Microbial Inoculant Blend', profit: '10-20% Kadar Rendemen' },
-            'mod': { title: 'Paket Bundling POC + Booster Buah', desc: 'Kombinasi asam amino esensial dan nutrisi makro organik siap serap untuk memicu pembungaan serempak.', depo: 'Rp 650.000 / Paket', tech: 'Amino-Acid Enriched Formula', profit: '25-35% Bobot Buah' },
-            'agg': { title: 'Suplai Konsentrat Organik Makro Skala Tonase', desc: 'Pasokan massal formula pupuk cair yang disesuaikan khusus dengan karakteristik sensor tanah lahan Anda.', depo: 'Hubungi Sales', tech: 'Customized Soil-Tailored Nutrient', profit: 'Skalabilitas Tinggi' }
-        }
-    };
-
-    // Fungsi Grafis Chart.js
-    function updatePerfGraph(historyData) {
-        const ctx = document.getElementById('perfChart').getContext('2d');
-        const gradient = ctx.createLinearGradient(0, 0, 0, 150);
-        gradient.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
-        gradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
-
-        if (perfChart) perfChart.destroy();
-
-        perfChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: historyData.map((_, i) => i),
-                datasets: [{
-                    data: historyData,
-                    borderColor: '#10b981',
-                    borderWidth: 3,
-                    pointRadius: 4,
-                    pointBackgroundColor: '#10b981',
-                    pointBorderColor: '#060b13',
-                    pointBorderWidth: 2,
-                    fill: true,
-                    backgroundColor: gradient,
-                    tension: 0.35
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                animation: { duration: 800 },
-                plugins: { legend: { display: false } },
-                scales: {
-                    x: { display: false },
-                    y: { display: false }
-                }
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 800 },
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { display: false },
+                y: { display: false }
             }
-        });
-    }
+        }
+    });
+}
 
-    // Fungsi Navigasi Seleksi Katalog
-    function selectInstrumen(ins) {
-        selectedInstrumen = ins;
-        document.getElementById('level-instrumen').style.display = 'none';
-        document.getElementById('level-tipe').style.display = 'grid';
-        document.getElementById('back-btn').style.display = 'block';
-        document.getElementById('catalog-title').innerText = 'Pilih Paket Otomasi: ' + ins.toUpperCase();
-    }
+// Fungsi Navigasi Seleksi Katalog
+function selectInstrumen(ins) {
+    selectedInstrumen = ins;
+    document.getElementById('level-instrumen').style.display = 'none';
+    document.getElementById('level-tipe').style.display = 'grid';
+    document.getElementById('back-btn').style.display = 'block';
+    document.getElementById('catalog-title').innerText = 'Pilih Paket Otomasi: ' + ins.toUpperCase();
+}
 
-    function selectTipe(tipe) {
-        selectedTipe = tipe;
-        const data = productHierarchy[selectedInstrumen][tipe];
-        
-        document.getElementById('level-tipe').style.display = 'none';
-        document.getElementById('level-detail').style.display = 'block';
-        
-        document.getElementById('det-title').innerHTML = data.title;
-        document.getElementById('det-desc').innerText = data.desc;
-        document.getElementById('det-depo').innerText = data.depo;
-        document.getElementById('det-tech').innerText = data.tech;
-        document.getElementById('det-profit').innerText = data.profit;
-        document.getElementById('catalog-title').innerText = 'Spesifikasi Teknis Modul';
-    }
+function selectTipe(tipe) {
+    selectedTipe = tipe;
+    const data = productHierarchy[selectedInstrumen][tipe];
+    
+    document.getElementById('level-tipe').style.display = 'none';
+    document.getElementById('level-detail').style.display = 'block';
+    
+    document.getElementById('det-title').innerHTML = data.title;
+    document.getElementById('det-desc').innerText = data.desc;
+    document.getElementById('det-depo').innerText = data.depo;
+    document.getElementById('det-tech').innerText = data.tech;
+    document.getElementById('det-profit').innerText = data.profit;
+    document.getElementById('catalog-title').innerText = 'Spesifikasi Teknis Modul';
+}
 
-    function resetNavigation() {
-        document.getElementById('level-instrumen').style.display = 'grid';
-        document.getElementById('level-tipe').style.display = 'none';
-        document.getElementById('level-detail').style.display = 'none';
-        document.getElementById('back-btn').style.display = 'none';
-        document.getElementById('catalog-title').innerText = 'Pilih Kategori Sistem Tani';
-    }
+function resetNavigation() {
+    document.getElementById('level-instrumen').style.display = 'grid';
+    document.getElementById('level-tipe').style.display = 'none';
+    document.getElementById('level-detail').style.display = 'none';
+    document.getElementById('back-btn').style.display = 'none';
+    document.getElementById('catalog-title').innerText = 'Pilih Kategori Sistem Tani';
+}
 
-    function scrollToModels() {
-        const titleElement = document.getElementById('model-section-title');
-        titleElement.scrollIntoView({ behavior: 'smooth' });
-        showToast("Silakan pilih Model Kemitraan di bawah ini.");
-    }
+function scrollToModels() {
+    const titleElement = document.getElementById('model-section-title');
+    titleElement.scrollIntoView({ behavior: 'smooth' });
+    showToastNotif("Silakan pilih Model Kemitraan di bawah ini.");
+}
 
-    // Fungsi Memilih Model Kemitraan & Memunculkan Form MoU
+// Fungsi Memilih Model Kemitraan & Memunculkan Form MoU
 function selectModel(model) {
     // 1. Validasi: Jika instrumen/kategori sistem tani ATAU tipe paket belum dipilih
     if (!selectedInstrumen || !selectedTipe) {
-        // Memanggil fungsi toast dengan pesan kustom
-        showToast("⚠️ Silakan pilih Kategori Sistem Tani & Paket terlebih dahulu di atas!");
+        // Memanggil fungsi toast warning dengan pesan kustom
+        showToastWarning("⚠️ Silakan pilih Kategori Sistem Tani & Paket terlebih dahulu di atas!");
         
         // Scroll otomatis ke area pemilihan agar pengguna tidak bingung
         document.getElementById('catalog-title').scrollIntoView({ behavior: 'smooth' });
@@ -960,101 +960,105 @@ function selectModel(model) {
 }
 
 // ========================================================
-// FUNGSI UTAMA UNTUK MEMUNCUKKAN & MENYEMBUNYIKAN TOAST
+// FUNGSI 1: MEMUNCUKKAN TOAST WARNING (Kuning - Pojok Kanan Bawah)
 // ========================================================
-function showToast(message) {
+function showToastWarning(message) {
     const toast = document.getElementById('toastWarning');
-    
-    // Masukkan teks pesan ke dalam elemen toast secara dinamis
     toast.innerHTML = message;
-    
-    // Tambahkan class 'show' untuk memicu efek animasi CSS (muncul/melayang)
     toast.classList.add('show');
+    toast.style.pointerEvents = 'auto'; // Mengaktifkan interaksi jika diperlukan
     
-    // Bersihkan timeout sebelumnya jika pengguna mengklik berkali-kali secara cepat
-    if (window.toastTimeout) {
-        clearTimeout(window.toastTimeout);
+    if (window.warningTimeout) {
+        clearTimeout(window.warningTimeout);
     }
     
-    // Sembunyikan kembali toast secara otomatis setelah 3 detik (3000ms)
-    window.toastTimeout = setTimeout(() => {
+    window.warningTimeout = setTimeout(() => {
         toast.classList.remove('show');
+        toast.style.pointerEvents = 'none';
     }, 3000);
 }
 
-    // Pengiriman Form
-    function submitOrder() {
-        const check = document.getElementById('agreementCheck').checked;
-        const nama = document.getElementById('formNama').value.trim();
-        const wa = document.getElementById('formWA').value.trim();
-
-        if (!check) {
-            showToast("Anda wajib menyetujui Nota Kesepahaman (MoU) terlebih dahulu!");
-            return;
-        }
-        if (nama === "" || wa === "") {
-            showToast("Nama dan nomor WhatsApp aktif wajib diisi!");
-            return;
-        }
-
-        showToast("Mengompilasi berkas pengajuan Anda...");
-        
-        setTimeout(() => {
-            const produkData = productHierarchy[selectedInstrumen][selectedTipe];
-            let modelText = selectedModelKemitraan === 'jual' ? 'Jual Putus' : (selectedModelKemitraan === 'sewa' ? 'Sewa Alat' : 'Investor');
-            
-            const waMessage = `Halo Tim Tani Cerdas Indonesia,\r\n\r\nSaya telah menyetujui MoU Digital di website.\r\n\r\n*Detail Pengajuan:*\r\n- Nama/Instansi: ${nama}\r\n- WhatsApp: ${wa}\r\n- Sistem Dipilih: ${produkData.title.replace(/<[^>]*>?/gm, '')}\r\n- Skema Kemitraan: ${modelText}\r\n- Nilai Produk: ${produkData.depo}\r\n\r\nMohon proses pengajuan resmi saya, terima kasih.`;
-            
-            window.open(`https://wa.me/6283177799511?text=${encodeURIComponent(waMessage)}`, '_blank');
-        }, 1500);
+// ========================================================
+// FUNGSI 2: MEMUNCUKKAN TOAST NOTIFIKASI SISTEM (Hijau - Pojok Kiri Bawah)
+// ========================================================
+function showToastNotif(text) {
+    const toast = document.getElementById('toastNotif');
+    document.getElementById('toastText').innerText = text;
+    toast.classList.add('active'); // Perbaikan metode pemanggilan classList
+    
+    if (window.notifTimeout) {
+        clearTimeout(window.notifTimeout);
     }
 
-    // System Toast Notification Helper
-    function showToast(text) {
-        const toast = document.getElementById('toastNotif');
-        document.getElementById('toastText').innerText = text;
-        toast.add('active');
-        toast.className = "active";
-        setTimeout(() => { toast.className = ""; }, 4000);
+    window.notifTimeout = setTimeout(() => { 
+        toast.classList.remove('active'); 
+    }, 4000);
+}
+
+// Pengiriman Form Pengajuan Resmi
+function submitOrder() {
+    const check = document.getElementById('agreementCheck').checked;
+    const nama = document.getElementById('formNama').value.trim();
+    const wa = document.getElementById('formWA').value.trim();
+
+    if (!check) {
+        showToastWarning("Anda wajib menyetujui Nota Kesepahaman (MoU) terlebih dahulu!");
+        return;
+    }
+    if (nama === "" || wa === "") {
+        showToastWarning("Nama dan nomor WhatsApp aktif wajib diisi!");
+        return;
     }
 
-    // Urgency Banner Countdown Timer
-    let timeAlloc = 3600;
-    setInterval(() => {
-        timeAlloc--;
-        if(timeAlloc < 0) timeAlloc = 3600;
-        let mins = Math.floor(timeAlloc / 60);
-        let secs = timeAlloc % 60;
-        document.getElementById('countdown').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-    }, 1000);
-
-    // Simulasi Pengisian Data Real-Time Telemetri SCADA IoT
+    showToastNotif("Mengompilasi berkas pengajuan Anda...");
+    
     setTimeout(() => {
-        document.getElementById('scada-status').innerHTML = '<span class="status-indicator"></span> Cloud Live Connected';
-        document.getElementById('target-crop').innerText = 'Klaster Melon Premium Riau - Smart Greenhouse B';
-        document.getElementById('val-ec').innerText = '1.82 mS/cm';
-        document.getElementById('val-ph').innerText = '6.21 pH';
-        document.getElementById('val-efficiency').innerText = '94.2%';
-        document.getElementById('val-error').innerText = '0.04%';
-        document.getElementById('val-cycles').innerText = '32 / Hari';
-        document.getElementById('val-yield').innerText = '98.7%';
-        updatePerfGraph([85.5, 88.2, 87.0, 92.5, 94.2]);
-        showToast("Koneksi IoT Master Server Berhasil didirikan!");
-    }, 2000);
+        const produkData = productHierarchy[selectedInstrumen][selectedTipe];
+        let modelText = selectedModelKemitraan === 'jual' ? 'Jual Putus' : (selectedModelKemitraan === 'sewa' ? 'Sewa Alat' : 'Investor');
+        
+        const waMessage = `Halo Tim Tani Cerdas Indonesia,\r\n\r\nSaya telah menyetujui MoU Digital di website.\r\n\r\n*Detail Pengajuan:*\r\n- Nama/Instansi: ${nama}\r\n- WhatsApp: ${wa}\r\n- Sistem Dipilih: ${produkData.title.replace(/<[^>]*>?/gm, '')}\r\n- Skema Kemitraan: ${modelText}\r\n- Nilai Produk: ${produkData.depo}\r\n\r\nMohon proses pengajuan resmi saya, terima kasih.`;
+        
+        window.open(`https://wa.me/6283177799511?text=${encodeURIComponent(waMessage)}`, '_blank');
+    }, 1500);
+}
 
-    // Inisialisasi Grafik Pertama Kali
-    window.onload = function() {
-        updatePerfGraph(performanceHistory);
-    };
+// Urgency Banner Countdown Timer
+let timeAlloc = 3600;
+setInterval(() => {
+    timeAlloc--;
+    if(timeAlloc < 0) timeAlloc = 3600;
+    let mins = Math.floor(timeAlloc / 60);
+    let secs = timeAlloc % 60;
+    document.getElementById('countdown').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+}, 1000);
 
-    // FORCE LAYOUT REPAINT SAAT ROTASI HP (Solusi Anti-Nyangkut)
-    window.addEventListener("orientationchange", function() {
-        document.body.style.display = 'none';
-        setTimeout(function() {
-            document.body.style.display = 'block';
-            if(perfChart) perfChart.resize(); // Mengatur ulang dimensi chart otomatis
-        }, 30);
-    });
+// Simulasi Pengisian Data Real-Time Telemetri SCADA IoT
+setTimeout(() => {
+    document.getElementById('scada-status').innerHTML = '<span class="status-indicator"></span> Cloud Live Connected';
+    document.getElementById('target-crop').innerText = 'Klaster Melon Premium Riau - Smart Greenhouse B';
+    document.getElementById('val-ec').innerText = '1.82 mS/cm';
+    document.getElementById('val-ph').innerText = '6.21 pH';
+    document.getElementById('val-efficiency').innerText = '94.2%';
+    document.getElementById('val-error').innerText = '0.04%';
+    document.getElementById('val-cycles').innerText = '32 / Hari';
+    document.getElementById('val-yield').innerText = '98.7%';
+    updatePerfGraph([85.5, 88.2, 87.0, 92.5, 94.2]);
+    showToastNotif("Koneksi IoT Master Server Berhasil didirikan!");
+}, 2000);
+
+// Inisialisasi Grafik Pertama Kali
+window.onload = function() {
+    updatePerfGraph(performanceHistory);
+};
+
+// FORCE LAYOUT REPAINT SAAT ROTASI HP
+window.addEventListener("orientationchange", function() {
+    document.body.style.display = 'none';
+    setTimeout(function() {
+        document.body.style.display = 'block';
+        if(perfChart) perfChart.resize();
+    }, 30);
+});
     </script>
 </body>
 </html>
