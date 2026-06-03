@@ -505,7 +505,7 @@
 
     <div class="urgency-banner">
         <i class="fa-solid fa-fire"></i> 
-        Sisa Kuota Subsidi Alat & Alokasi Pembuatan IoT Batch Bulan Ini: <span id="countdown">30:00</span>
+        Sisa Kuota Subsidi Alat & Alokasi Pembuatan IoT Batch Bulan Ini: <span id="countdown">60:00</span>
     </div>
     
     <nav>
@@ -916,6 +916,16 @@
         updatePerfGraph(performanceHistory);
         fetchSCADAData();
     };
+ // Countdown Hitung Mundur Urgency Kuota
+    let time = 1800;
+    const timerEl = document.getElementById('countdown');
+    setInterval(() => {
+        let m = Math.floor(time / 60);
+        let s = time % 60;
+        timerEl.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+        if (time > 0) time--;
+    }, 1000);
+        
     </script>
 </body>
 </html>
