@@ -464,7 +464,31 @@
         #toastNotif.active {
             bottom: 20px;
         }
+/* Style agar Toast melayang di pojok kanan bawah */
+#toastWarning {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fff3cd; /* Warna kuning peringatan */
+    color: #856404;
+    border-left: 5px solid #ffc107;
+    padding: 15px 25px;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+    
+    /* Efek transisi animasi memunculkan toast */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    pointer-events: none;
+}
 
+/* Class ini akan ditambahkan lewat JavaScript ketika di-klik */
+#toastWarning.show {
+    opacity: 1;
+    transform: translateY(0);
+}
         /* Floating WhatsApp Button */
         .wa-floating {
             position: fixed;
@@ -796,6 +820,10 @@
         </div>
     </footer>
 
+      <div id="toastWarning" class="toast-hidden">
+    ⚠️ Silakan pilih Kategori Sistem Tani terlebih dahulu.
+      </div>
+
     <script>
     let perfChart = null;
     let performanceHistory = [85.5, 88.2, 87.0, 92.5]; // Data telemetri dummy fallback
@@ -904,27 +932,55 @@
     }
 
     // Fungsi Memilih Model Kemitraan & Memunculkan Form MoU
-    function selectModel(model) {
-        if (!selectedInstrumen || !selectedTipe) {
-            showToast("Pilih kategori sistem tani & paket terlebih dahulu di atas!");
-            document.getElementById('catalog-title').scrollIntoView({ behavior: 'smooth' });
-            return;
-        }
+function selectModel(model) {
+    // 1. Validasi: Jika instrumen/kategori sistem tani ATAU tipe paket belum dipilih
+    if (!selectedInstrumen || !selectedTipe) {
+        // Memanggil fungsi toast dengan pesan kustom
+        showToast("⚠️ Silakan pilih Kategori Sistem Tani & Paket terlebih dahulu di atas!");
         
-        selectedModelKemitraan = model;
-        const formSection = document.getElementById('registrationSection');
-        const formTitle = document.getElementById('form-type-title');
-        
-        formSection.style.display = 'block';
-        formSection.scrollIntoView({ behavior: 'smooth' });
-
-        let modelText = "";
-        if (model === 'jual') modelText = "Jual Putus";
-        if (model === 'sewa') modelText = "Sewa Alat IoT";
-        if (model === 'investor') modelText = "Kemitraan Investor";
-
-        formTitle.innerHTML = `<i class="fa-solid fa-file-signature"></i> Formulir MoU Digital - Skema ${modelText}`;
+        // Scroll otomatis ke area pemilihan agar pengguna tidak bingung
+        document.getElementById('catalog-title').scrollIntoView({ behavior: 'smooth' });
+        return;
     }
+    
+    // 2. Jika validasi lolos, set model kemitraan yang dipilih
+    selectedModelKemitraan = model;
+    const formSection = document.getElementById('registrationSection');
+    const formTitle = document.getElementById('form-type-title');
+    
+    formSection.style.display = 'block';
+    formSection.scrollIntoView({ behavior: 'smooth' });
+
+    let modelText = "";
+    if (model === 'jual') modelText = "Jual Putus";
+    if (model === 'sewa') modelText = "Sewa Alat IoT";
+    if (model === 'investor') modelText = "Kemitraan Investor";
+
+    formTitle.innerHTML = `<i class="fa-solid fa-file-signature"></i> Formulir MoU Digital - Skema ${modelText}`;
+}
+
+// ========================================================
+// FUNGSI UTAMA UNTUK MEMUNCUKKAN & MENYEMBUNYIKAN TOAST
+// ========================================================
+function showToast(message) {
+    const toast = document.getElementById('toastWarning');
+    
+    // Masukkan teks pesan ke dalam elemen toast secara dinamis
+    toast.innerHTML = message;
+    
+    // Tambahkan class 'show' untuk memicu efek animasi CSS (muncul/melayang)
+    toast.classList.add('show');
+    
+    // Bersihkan timeout sebelumnya jika pengguna mengklik berkali-kali secara cepat
+    if (window.toastTimeout) {
+        clearTimeout(window.toastTimeout);
+    }
+    
+    // Sembunyikan kembali toast secara otomatis setelah 3 detik (3000ms)
+    window.toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
 
     // Pengiriman Form
     function submitOrder() {
