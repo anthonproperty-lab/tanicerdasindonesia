@@ -289,6 +289,35 @@
             70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
+
+       /* Footer Copyright */
+        footer {
+            background-color: var(--panel);
+            color: var(--muted);
+            padding: 25px 20px;
+            border-top: 1px solid #1e293b;
+            text-align: center;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .copyright {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .footer-slogan {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+ 
     </style>
 </head>
 <body>
@@ -377,7 +406,13 @@
     <a href="https://wa.me/6283177799511?text=Halo%20Tim%20Support%20Tani%20Cerdas%20Indonesia..." class="wa-floating" target="_blank" rel="noopener noreferrer">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
-
+ <footer>
+        <div class="footer-container">
+            <p class="copyright">&copy; 2026 Tani Cerdas Indonesia. Hak Cipta Dilindungi.</p>
+            <p class="footer-slogan">Ekosistem Ketahanan Pangan Modern</p>
+        </div>
+    </footer>
+    
     <script>
         const lightbox = document.getElementById('lightbox');
         const target = document.getElementById('lightbox-target');
