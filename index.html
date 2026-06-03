@@ -925,14 +925,6 @@
         if (time > 0) time--;
     }, 1000);
 
-        // Mendeteksi perubahan orientasi layar (di-rotate)
-    window.addEventListener("orientationchange", function() {
-        // Memaksa browser untuk melakukan 'repaint' layout tanpa reload penuh
-        document.body.style.display = 'none';
-        setTimeout(function() {
-            document.body.style.display = 'block';
-        }, 10);
-    });
     </script>
 </body>
 </html>
