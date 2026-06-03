@@ -949,7 +949,8 @@ function selectModel(model) {
         showToastWarning("⚠️ Silakan pilih Kategori Sistem Tani & Paket terlebih dahulu di atas!");
         
         // Scroll otomatis ke area pemilihan agar pengguna tidak bingung
-        document.getElementById('catalog-title').scrollIntoView({ behavior: 'smooth' });
+        const catalogSection = document.getElementById('catalog-title').parentElement;
+        catalogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         return;
     }
     
