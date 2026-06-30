@@ -17,7 +17,7 @@ const Categories = {
 
         color: "#2E7D32",
 
-        image: "assets/img/categories/pertanian.webp",
+        image: "Assets/img/categories/pertanian.png",
 
         description:
             "Solusi IoT untuk budidaya tanaman hortikultura, greenhouse, irigasi otomatis, fertigasi, dan monitoring lahan.",
@@ -35,7 +35,7 @@ const Categories = {
 
         color: "#556B2F",
 
-        image: "assets/img/categories/perkebunan.webp",
+        image: "Assets/img/categories/perkebunan.png",
 
         description:
             "Solusi IoT untuk monitoring kebun, keamanan, LoRa, sensor lapangan, dan otomatisasi perkebunan.",
@@ -53,7 +53,7 @@ const Categories = {
 
         color: "#0288D1",
 
-        image: "assets/img/categories/perikanan.webp",
+        image: "Assets/img/categories/perikanan.png",
 
         description:
             "Monitoring kualitas air, pemberian pakan otomatis, dan sistem IoT untuk budidaya ikan.",
@@ -71,7 +71,7 @@ const Categories = {
 
         color: "#EF6C00",
 
-        image: "assets/img/categories/peternakan.webp",
+        image: "Assets/img/categories/peternakan.png",
 
         description:
             "Monitoring kandang, kontrol suhu, sensor gas, serta otomatisasi peternakan modern.",
@@ -89,7 +89,7 @@ const Categories = {
 
         color: "#455A64",
 
-        image: "assets/img/categories/keamanan.webp",
+        image: "Assets/img/categories/keamanan.png",
 
         description:
             "Solar CCTV 4G, sistem keamanan kebun, monitoring area, dan pengawasan jarak jauh.",
