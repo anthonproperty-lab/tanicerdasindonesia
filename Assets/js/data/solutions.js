@@ -39,12 +39,12 @@ const Solutions = [
     },
 
     media:{
-        thumbnail:"assets/img/products/hortikultura/thumb.webp",
-        hero:"assets/img/products/hortikultura/hero.webp",
+        thumbnail:"Assets/img/products/hortikultura/thumb.webp",
+        hero:"Assets/img/products/hortikultura/hero.webp",
         gallery:[
-            "assets/img/products/hortikultura/1.webp",
-            "assets/img/products/hortikultura/2.webp",
-            "assets/img/products/hortikultura/3.webp"
+            "Assets/img/products/hortikultura/1.webp",
+            "Assets/img/products/hortikultura/2.webp",
+            "Assets/img/products/hortikultura/3.webp"
         ]
     },
 
@@ -143,8 +143,8 @@ const Solutions = [
     },
 
     media:{
-        thumbnail:"assets/img/products/sawit/thumb.webp",
-        hero:"assets/img/products/sawit/hero.webp",
+        thumbnail:"Assets/img/products/sawit/thumb.webp",
+        hero:"Assets/img/products/sawit/hero.webp",
         gallery:[]
     },
 
@@ -213,8 +213,8 @@ const Solutions = [
     },
 
     media:{
-        thumbnail:"assets/img/products/kolam/thumb.webp",
-        hero:"assets/img/products/kolam/hero.webp",
+        thumbnail:"Assets/img/products/kolam/thumb.webp",
+        hero:"Assets/img/products/kolam/hero.webp",
         gallery:[]
     },
 
@@ -271,8 +271,8 @@ const Solutions = [
     },
 
     media:{
-        thumbnail:"assets/img/products/peternakan/thumb.webp",
-        hero:"assets/img/products/peternakan/hero.webp",
+        thumbnail:"Assets/img/products/peternakan/thumb.webp",
+        hero:"Assets/img/products/peternakan/hero.webp",
         gallery:[]
     },
 
@@ -329,8 +329,8 @@ const Solutions = [
     },
 
     media:{
-        thumbnail:"assets/img/products/cctv/thumb.webp",
-        hero:"assets/img/products/cctv/hero.webp",
+        thumbnail:"Assets/img/products/cctv/thumb.webp",
+        hero:"Assets/img/products/cctv/hero.webp",
         gallery:[]
     },
 
