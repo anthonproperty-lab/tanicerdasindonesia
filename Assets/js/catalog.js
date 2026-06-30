@@ -47,27 +47,19 @@ function renderCategories(){
 
         card.className="category-card";
 
-        card.innerHTML=`
+        card.innerHTML = `
+<div class="category-icon">
+    ${category.icon}
+</div>
 
-            <div class="category-icon">
+<div class="category-title">
+    ${category.name}
+</div>
 
-                ${category.icon}
-
-            </div>
-
-            <div class="category-title">
-
-                ${category.name}
-
-            </div>
-
-            <div class="category-desc">
-
-                ${category.description}
-
-            </div>
-
-        `;
+<div class="category-desc">
+    ${category.description}
+</div>
+`;
 
         card.onclick=()=>{
 
