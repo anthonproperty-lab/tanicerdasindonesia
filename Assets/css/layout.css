@@ -1,0 +1,353 @@
+/* ==========================================================
+   TANI CERDAS INDONESIA
+   LAYOUT.CSS
+   Struktur Halaman
+========================================================== */
+
+
+/* ==========================================================
+   NAVBAR
+========================================================== */
+
+nav{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px 30px;
+
+    background:rgba(15,23,42,.92);
+
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid #1e293b;
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    color:var(--primary);
+
+    font-size:1.3rem;
+
+    font-weight:700;
+
+}
+
+.logo img{
+
+    height:52px;
+
+    width:auto;
+
+}
+
+.nav-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.hero{
+
+    max-width:1200px;
+
+    margin:40px auto;
+
+    padding:60px 40px;
+
+    text-align:center;
+
+    border-radius:var(--radius);
+
+    border:1px solid #1f2d3c;
+
+    background:
+
+    linear-gradient(
+
+        180deg,
+
+        #111827 0%,
+
+        #0f172a 100%
+
+    );
+
+    box-shadow:var(--shadow);
+
+}
+
+.hero h1{
+
+    font-size:3rem;
+
+    margin-bottom:20px;
+
+}
+
+.hero h1 span{
+
+    color:var(--primary);
+
+}
+
+.hero p{
+
+    max-width:850px;
+
+    margin:auto;
+
+    font-size:1.15rem;
+
+}
+
+
+/* ==========================================================
+   MAIN CONTAINER
+========================================================== */
+
+.container{
+
+    width:min(1200px,95%);
+
+    margin:auto;
+
+    display:grid;
+
+    gap:24px;
+
+}
+
+.full-width{
+
+    grid-column:1/-1;
+
+}
+
+
+/* ==========================================================
+   PANEL
+========================================================== */
+
+.panel{
+
+    background:var(--panel);
+
+    border:1px solid #1e293b;
+
+    border-radius:var(--radius);
+
+    padding:24px;
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+.panel-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+    padding-bottom:12px;
+
+    border-bottom:1px solid #243447;
+
+    font-size:1.25rem;
+
+    font-weight:700;
+
+}
+
+
+/* ==========================================================
+   GRID
+========================================================== */
+
+.grid-2{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+.grid-3{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+.grid-4{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+
+/* ==========================================================
+   SECTION
+========================================================== */
+
+section{
+
+    margin-bottom:35px;
+
+}
+
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+footer{
+
+    margin-top:50px;
+
+    padding:28px;
+
+    background:var(--panel);
+
+    border-top:1px solid #243447;
+
+    text-align:center;
+
+}
+
+.footer-container{
+
+    width:min(1200px,95%);
+
+    margin:auto;
+
+}
+
+.copyright{
+
+    color:white;
+
+    font-weight:600;
+
+    margin-bottom:6px;
+
+}
+
+.footer-slogan{
+
+    color:var(--muted);
+
+    font-size:.9rem;
+
+}
+
+
+/* ==========================================================
+   URGENCY BANNER
+========================================================== */
+
+.urgency-banner{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:10px;
+
+    background:
+
+    linear-gradient(
+
+        90deg,
+
+        #b91c1c,
+
+        #ef4444
+
+    );
+
+    color:white;
+
+    font-weight:600;
+
+}
+
+#countdown{
+
+    padding:4px 10px;
+
+    border-radius:6px;
+
+    background:rgba(0,0,0,.25);
+
+    font-family:monospace;
+
+}
+
+
+/* ==========================================================
+   CHART
+========================================================== */
+
+.chart-container{
+
+    position:relative;
+
+    height:180px;
+
+}
+
+
+/* ==========================================================
+   FORM
+========================================================== */
+
+#registrationSection{
+
+    display:none;
+
+    margin-top:25px;
+
+}
