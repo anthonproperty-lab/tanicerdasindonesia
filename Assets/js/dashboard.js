@@ -1,3 +1,12 @@
+let perfChart = null;
+
+let performanceHistory = [
+    85.5,
+    88.2,
+    87.0,
+    92.5
+];
+
 function updatePerfGraph(historyData) {
     const ctx = document.getElementById('perfChart').getContext('2d');
     const gradient = ctx.createLinearGradient(0, 0, 0, 150);
