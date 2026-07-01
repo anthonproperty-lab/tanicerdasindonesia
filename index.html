@@ -1,126 +1,367 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
+    <!-- ==========================================
+         BASIC
+    =========================================== -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tani Cerdas Indonesia - Solusi Otomasi & Modernisasi Pertanian</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="IE=edge">
+
+    <title>
+        Tani Cerdas Indonesia | Smart Farming, IoT & Otomasi Pertanian
+    </title>
+
+
+    <!-- ==========================================
+         SEO
+    =========================================== -->
+
+    <meta
+        name="description"
+        content="Tani Cerdas Indonesia menyediakan solusi Smart Farming berbasis IoT, Greenhouse Automation, Fertigasi, Irigasi Otomatis, Monitoring Lahan, Perikanan, Peternakan, serta Sistem Pertanian Presisi modern.">
+
+    <meta
+        name="keywords"
+        content="IoT Pertanian, Smart Farming, Greenhouse, Fertigasi, Irigasi Otomatis, Monitoring Lahan, Internet of Things, Pertanian Presisi, Smart Agriculture, Tani Cerdas Indonesia">
+
+    <meta
+        name="author"
+        content="Tani Cerdas Indonesia">
+
+    <meta
+        name="robots"
+        content="index,follow">
+
+    <meta
+        name="theme-color"
+        content="#10b981">
+
+
+    <!-- ==========================================
+         OPEN GRAPH
+    =========================================== -->
+
+    <meta
+        property="og:type"
+        content="website">
+
+    <meta
+        property="og:title"
+        content="Tani Cerdas Indonesia">
+
+    <meta
+        property="og:description"
+        content="Modernisasi Pertanian Indonesia melalui Internet of Things, Otomasi, Greenhouse, Monitoring dan Smart Farming.">
+
+    <meta
+        property="og:image"
+        content="Assets/logo_tci.jpg">
+
+    <meta
+        property="og:url"
+        content="https://anthonproperty-lab.github.io/tanicerdasindonesia/">
+
+
+    <!-- ==========================================
+         FAVICON
+    =========================================== -->
+
+    <link
+        rel="icon"
+        type="image/jpeg"
+        href="Assets/logo_tci.jpg">
+
+
+    <!-- ==========================================
+         PRELOAD
+    =========================================== -->
+
+    <link
+        rel="preload"
+        as="image"
+        href="Assets/logo_tci.jpg">
+
+
+    <!-- ==========================================
+         FONT AWESOME
+    =========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <!-- ==========================================
+         CHART JS
+    =========================================== -->
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-<link rel="stylesheet" href="Assets/css/base.css">
-<link rel="stylesheet" href="Assets/css/layout.css">
-<link rel="stylesheet" href="Assets/css/catalog.css">
-<link rel="stylesheet" href="Assets/css/components.css">
-<link rel="stylesheet" href="Assets/css/responsive.css"> 
-</style> 
+
+
+    <!-- ==========================================
+         CSS
+    =========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="Assets/css/base.css">
+
+    <link
+        rel="stylesheet"
+        href="Assets/css/layout.css">
+
+    <link
+        rel="stylesheet"
+        href="Assets/css/catalog.css">
+
+    <link
+        rel="stylesheet"
+        href="Assets/css/components.css">
+
+    <link
+        rel="stylesheet"
+        href="Assets/css/responsive.css">
+
 </head>
+
 <body>
 
-    <div class="urgency-banner">
-        <i class="fa-solid fa-fire"></i> 
-        Sisa Kuota Subsidi Alat & Alokasi Pembuatan IoT Batch Bulan Ini: <span id="countdown">60:00</span>
-    </div>
-    
-    <nav>
-        <div class="logo">
-            <img src="Assets/logo_tci.jpg" alt="Logo Tani Cerdas Indonesia" style="height: 40px; margin-right: 10px; vertical-align: middle;">
-            <span>Tani Cerdas Indonesia</span>
-        </div>
-        <div class="nav-right">
-            <div style="font-size: 0.9rem; color: var(--muted);">Ekosistem Ketahanan Pangan Modern</div>
-            <a href="gallery.html" class="gallery-btn">
-                <i class="fa-solid fa-image"></i> Gallery
-            </a>
-        </div>
-    </nav>
+<!-- ==========================================================
+     URGENCY BANNER
+========================================================== -->
 
-    <div class="hero">
-        <h1>Modernisasi Lahan Tanpa Batas dengan <span>IoT Presisi</span></h1>
-        <p>Kami menyediakan teknologi otomasi fertigasi, kontrol iklim mikro, dan pupuk organik premium untuk mendongkrak tonase panen Anda secara terukur.</p>
-    </div>
+<div class="urgency-banner">
 
-    <div class="container">
-        
-        <div class="panel">
-            <div class="panel-title">
-                <span><i class="fa-solid fa-microchip"></i> Telemetri Gerbang IoT</span>
-                <span id="scada-status" class="status-tag"><span class="status-indicator"></span> Menghubungkan IoT Cloud...</span>
-            </div>
-            
-            <div style="margin-bottom: 20px;">
-                <span style="color: var(--muted); font-size: 0.85rem;">Klaster Pengujian Aktif:</span>
-                <div id="target-crop" style="font-size: 1.3rem; font-weight: bold; color: var(--primary);">Memuat data sensor...</div>
-            </div>
+    <i class="fa-solid fa-seedling"></i>
 
-            <div class="stats-grid">
-                <div class="stat-box">
-                    <div class="stat-label">Nutrisi (EC)</div>
-                    <div class="stat-value" id="val-ec">--</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-label">Keasaman Air (pH)</div>
-                    <div class="stat-value" id="val-ph">--</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-label">Efisiensi Tumbuh</div>
-                    <div class="stat-value" id="val-efficiency">--</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-label">Toleransi Error</div>
-                    <div class="stat-value" id="val-error">--</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-label">Siklus Sirkulasi</div>
-                    <div class="stat-value" id="val-cycles">--</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-label">Akurasi Rendemen</div>
-                    <div class="stat-value" id="val-yield">--</div>
-                </div>
-            </div>
+    <span>
 
-            <div class="chart-container">
-                <canvas id="perfChart"></canvas>
-            </div>
-        </div>
+        Konsultasi, Survey Lokasi, dan Pembuatan Sistem IoT dilakukan
+        berdasarkan jadwal produksi bulanan.
 
-       <div class="panel">
+    </span>
 
-    <!-- Judul -->
-    <div class="panel-title">
-        <span>
-            <i class="fa-solid fa-microchip"></i>
-            Solusi IoT Tani Cerdas
-        </span>
-    </div>
+    <span id="countdown">
 
-    <!-- Breadcrumb -->
-    <div id="catalogBreadcrumb" class="catalog-breadcrumb">
-
-    <span
-        id="breadcrumbHome"
-        class="breadcrumb-link"
-        onclick="backToCategories()">
-
-        Beranda
+        60:00
 
     </span>
 
 </div>
 
-    <!-- Kategori -->
+
+<!-- ==========================================================
+     NAVIGATION
+========================================================== -->
+
+<nav>
+
+    <div class="logo">
+
+        <img
+            src="Assets/logo_tci.jpg"
+            alt="Logo Tani Cerdas Indonesia">
+
+        <div>
+
+            <h2>
+
+                Tani Cerdas Indonesia
+
+            </h2>
+
+            <small>
+
+                Smart Agriculture Ecosystem
+
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="nav-right">
+
+        <a
+            href="#catalogSection"
+            class="gallery-btn">
+
+            <i class="fa-solid fa-box"></i>
+
+            Produk
+
+        </a>
+
+
+        <a
+            href="#partnershipSection"
+            class="gallery-btn">
+
+            <i class="fa-solid fa-handshake"></i>
+
+            Kemitraan
+
+        </a>
+
+
+        <a
+            href="gallery.html"
+            class="gallery-btn">
+
+            <i class="fa-solid fa-image"></i>
+
+            Galeri
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ==========================================================
+     HERO
+========================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="hero-badge">
+
+            🇮🇩 Smart Farming • Internet of Things • Precision Agriculture
+
+        </span>
+
+        <h1>
+
+            Modernisasi Pertanian dengan
+
+            <span>
+
+                Internet of Things
+
+            </span>
+
+        </h1>
+
+        <p>
+
+            Tani Cerdas Indonesia menghadirkan berbagai solusi
+            Smart Farming untuk hortikultura,
+            greenhouse,
+            perkebunan,
+            irigasi,
+            fertigasi,
+            peternakan,
+            perikanan,
+            hingga monitoring lingkungan
+            berbasis Internet of Things (IoT).
+
+        </p>
+
+        <div class="hero-button-group">
+
+            <a
+                href="#catalogSection"
+                class="cta-btn">
+
+                <i class="fa-solid fa-box"></i>
+
+                Jelajahi Produk
+
+            </a>
+
+            <a
+                href="https://wa.me/6283177799511"
+                target="_blank"
+                class="gallery-btn">
+
+                <i class="fa-brands fa-whatsapp"></i>
+
+                Konsultasi
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================================
+     MAIN CONTENT
+========================================================== -->
+
+<main class="container">
+
+<section
+    id="catalogSection"
+    class="panel">
+
+    <div class="panel-title">
+
+        <span>
+
+            <i class="fa-solid fa-layer-group"></i>
+
+            Katalog Produk & Solusi
+
+        </span>
+
+    </div>
+
+    <!-- Breadcrumb -->
+
+    <div
+        id="catalogBreadcrumb"
+        class="catalog-breadcrumb">
+
+        <span
+            id="breadcrumbHome"
+            class="breadcrumb-link"
+            onclick="backToCategories()">
+
+            Beranda
+
+        </span>
+
+    </div>
+
+    <!-- ===========================
+         KATEGORI
+    ============================ -->
+
     <section id="catalogCategorySection">
 
-        <h3>Pilih Kategori</h3>
+        <h3>
 
-        <div id="solutionCategories"
-             class="catalog-category-grid">
+            Pilih Kategori Solusi
+
+        </h3>
+
+        <div
+            id="solutionCategories"
+            class="catalog-category-grid">
 
         </div>
 
     </section>
 
-    <!-- Daftar Produk -->
+    <!-- ===========================
+         DAFTAR PRODUK
+    ============================ -->
+
     <section
         id="catalogProductSection"
         style="display:none;">
@@ -147,7 +388,10 @@
 
     </section>
 
-    <!-- Detail Produk -->
+    <!-- ===========================
+         DETAIL PRODUK
+    ============================ -->
+
     <section
         id="catalogDetailSection"
         style="display:none;">
@@ -163,31 +407,31 @@
         <img
             id="solutionHero"
             class="solution-hero"
-             alt="Produk IoT">
+            alt="Produk">
 
-         <div
-    id="solutionCategory"
-    class="solution-category">
-</div>
-
-        <h2 id="solutionTitle"></h2>
-
-        <div id="solutionBadges"
-        class="solution-badges">
+        <div
+            id="solutionCategory"
+            class="solution-category">
 
         </div>
 
-        <h4 id="solutionMarketingName">
+        <h2 id="solutionTitle"></h2>
 
-        </h4>
+        <div
+            id="solutionBadges"
+            class="solution-badges">
 
-        <p id="solutionOverview">
+        </div>
 
-        </p>
+        <h3 id="solutionMarketingName"></h3>
 
-        <h2 id="solutionPrice">
+        <p id="solutionOverview"></p>
 
-        </h2>
+        <div
+            id="solutionPrice"
+            class="solution-price">
+
+        </div>
 
         <!-- Highlight -->
 
@@ -197,10 +441,9 @@
 
         </div>
 
-        <!-- Feature -->
+        <!-- Features -->
 
-        <section
-            id="featureSection">
+        <section id="featureSection">
 
             <h3>
 
@@ -208,17 +451,13 @@
 
             </h3>
 
-            <div
-                id="solutionFeatures">
-
-            </div>
+            <div id="solutionFeatures"></div>
 
         </section>
 
-        <!-- Benefit -->
+        <!-- Benefits -->
 
-        <section
-            id="benefitSection">
+        <section id="benefitSection">
 
             <h3>
 
@@ -226,17 +465,13 @@
 
             </h3>
 
-            <div
-                id="solutionBenefits">
-
-            </div>
+            <div id="solutionBenefits"></div>
 
         </section>
 
         <!-- Workflow -->
 
-        <section
-            id="workflowSection">
+        <section id="workflowSection">
 
             <h3>
 
@@ -244,17 +479,13 @@
 
             </h3>
 
-            <div
-                id="solutionWorkflow">
-
-            </div>
+            <div id="solutionWorkflow"></div>
 
         </section>
 
         <!-- Package -->
 
-        <section
-            id="packageSection">
+        <section id="packageSection">
 
             <h3>
 
@@ -262,28 +493,21 @@
 
             </h3>
 
-            <div
-                id="solutionPackage">
-
-            </div>
+            <div id="solutionPackage"></div>
 
         </section>
 
         <!-- FAQ -->
 
-        <section
-            id="faqSection">
+        <section id="faqSection">
 
             <h3>
 
-                FAQ
+                Pertanyaan Umum
 
             </h3>
 
-            <div
-                id="solutionFaq">
-
-            </div>
+            <div id="solutionFaq"></div>
 
         </section>
 
@@ -291,396 +515,576 @@
             class="cta-btn"
             onclick="scrollToModels()">
 
-            Pilih Skema Kemitraan
+            Konsultasikan Solusi Ini
 
         </button>
 
     </section>
 
-</div>
+</section>
 
-        <div class="panel full-width">
+<!-- ==========================================================
+     DASHBOARD MONITORING IOT
+========================================================== -->
+
+<section
+    id="dashboardSection"
+    class="panel">
+
+    <div class="panel-title">
+
+        <span>
+
+            <i class="fa-solid fa-satellite-dish"></i>
+
+            Dashboard Monitoring IoT
+
+        </span>
+
+        <span
+            id="scada-status"
+            class="status-tag">
+
+            <span class="status-indicator"></span>
+
+            Online
+
+        </span>
+
+    </div>
+
+
+    <div class="dashboard-header">
+
+        <div>
+
+            <small>
+
+                Komoditas Aktif
+
+            </small>
+
+            <h2 id="target-crop">
+
+                Memuat Sistem...
+
+            </h2>
+
+        </div>
+
+        <div>
+
+            <small>
+
+                Sinkronisasi Cloud
+
+            </small>
+
+            <h3>
+
+                AWS IoT
+
+            </h3>
+
+        </div>
+
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="stat-box">
+
+            <div class="stat-label">
+
+                EC
+
+            </div>
+
+            <div
+                id="val-ec"
+                class="stat-value">
+
+                --
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-box">
+
+            <div class="stat-label">
+
+                pH
+
+            </div>
+
+            <div
+                id="val-ph"
+                class="stat-value">
+
+                --
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-box">
+
+            <div class="stat-label">
+
+                Efisiensi
+
+            </div>
+
+            <div
+                id="val-efficiency"
+                class="stat-value">
+
+                --
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-box">
+
+            <div class="stat-label">
+
+                Error
+
+            </div>
+
+            <div
+                id="val-error"
+                class="stat-value">
+
+                --
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-box">
+
+            <div class="stat-label">
+
+                Siklus
+
+            </div>
+
+            <div
+                id="val-cycles"
+                class="stat-value">
+
+                --
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-box">
+
+            <div class="stat-label">
+
+                Prediksi Panen
+
+            </div>
+
+            <div
+                id="val-yield"
+                class="stat-value">
+
+                --
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="chart-container">
+
+        <canvas id="perfChart"></canvas>
+
+    </div>
+
+</section>
+
+        <!-- ==========================================================
+             MODEL KEMITRAAN
+        =========================================================== -->
+
+        <section id="partnershipSection" class="panel full-width">
+
             <div class="panel-title">
-                <span id="model-section-title">Model Kemitraan & Akses Sistem</span>
+                <span>
+                    <i class="fa-solid fa-handshake"></i>
+                    Pilih Skema Kemitraan
+                </span>
             </div>
 
             <div class="model-grid">
-                <div class="model-card" onclick="selectModel('jual')">
+
+                <!-- Jual Putus -->
+
+                <div class="model-card"
+                     onclick="selectModel('jual')">
+
                     <div>
-                        <div class="model-icon" style="color: var(--primary);"><i class="fa-solid fa-basket-shopping"></i></div>
-                        <h3>Jual Putus Produk/Sistem</h3>
-                        <p style="font-size:0.85rem; color: var(--muted);">Kepemilikan aset 100% milik Anda secara absolut.</p>
+
+                        <div class="model-icon"
+                             style="color:var(--primary);">
+
+                            <i class="fa-solid fa-cart-shopping"></i>
+
+                        </div>
+
+                        <h3>Jual Putus</h3>
+
+                        <p>
+
+                            Kepemilikan penuh perangkat IoT,
+                            software, maupun sistem otomasi.
+
+                        </p>
+
                         <ul class="model-features">
-                            <li><i class="fa-solid fa-check" style="color:var(--primary);"></i> Pembelian unit kontroler dan sensor putus.</li>
-                            <li><i class="fa-solid fa-check" style="color:var(--primary);"></i> Garansi 1 bulan.</li>
-                            <li><i class="fa-solid fa-check" style="color:var(--primary);"></i> Bebas biaya bulanan atau potongan hasil panen.</li>
+
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                Kepemilikan 100%
+                            </li>
+
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                Garansi perangkat
+                            </li>
+
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                Tanpa biaya bulanan
+                            </li>
+
                         </ul>
+
                     </div>
-                    <div style="margin-top:15px; font-weight:bold; color:var(--primary);">Pilih Model Jual Putus &rarr;</div>
+
                 </div>
 
-                <div class="model-card" onclick="selectModel('sewa')">
+                <!-- Rental -->
+
+                <div class="model-card"
+                     onclick="selectModel('sewa')">
+
                     <div>
-                        <div class="model-icon" style="color: var(--warning);"><i class="fa-solid fa-retweet"></i></div>
-                        <h3>Sewa Alat Otomasi IoT</h3>
-                        <p style="font-size:0.85rem; color: var(--muted);">Modernisasi kebun tanpa beban capital expenditure yang berat.</p>
+
+                        <div class="model-icon"
+                             style="color:#f59e0b;">
+
+                            <i class="fa-solid fa-repeat"></i>
+
+                        </div>
+
+                        <h3>Sewa Sistem</h3>
+
+                        <p>
+
+                            Gunakan teknologi kami tanpa
+                            investasi awal yang besar.
+
+                        </p>
+
                         <ul class="model-features">
-                            <li><i class="fa-solid fa-check" style="color:var(--warning);"></i> Sistem sewa bulanan/per siklus tanam komoditas.</li>
-                            <li><i class="fa-solid fa-check" style="color:var(--warning);"></i> Penggantian komponen sensor rusak ditanggung penuh oleh kami.</li>
-                            <li><i class="fa-solid fa-check" style="color:var(--warning);"></i> Akses dashboard telemetri premium di cloud master server.</li>
+
+                            <li>
+
+                                <i class="fa-solid fa-check"></i>
+
+                                Biaya ringan
+
+                            </li>
+
+                            <li>
+
+                                <i class="fa-solid fa-check"></i>
+
+                                Maintenance termasuk
+
+                            </li>
+
+                            <li>
+
+                                <i class="fa-solid fa-check"></i>
+
+                                Upgrade sistem berkala
+
+                            </li>
+
                         </ul>
+
                     </div>
-                    <div style="margin-top:15px; font-weight:bold; color:var(--warning);">Pilih Model Sewa Alat &rarr;</div>
+
                 </div>
 
-                <div class="model-card investor-card" onclick="selectModel('investor')">
+                <!-- Investor -->
+
+                <div class="model-card investor-card"
+                     onclick="selectModel('investor')">
+
                     <div>
-                        <div class="model-icon" style="color: var(--accent);"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-                        <h3>Pendanaan Alat (Investor)</h3>
-                        <p style="font-size:0.85rem; color: var(--muted);">Pendanaan pembuatan kit otomasi untuk lahan produktif komersial.</p>
+
+                        <div class="model-icon"
+                             style="color:var(--accent);">
+
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
+
+                        </div>
+
+                        <h3>Investor</h3>
+
+                        <p>
+
+                            Danai pembangunan sistem IoT
+                            pertanian dan memperoleh
+                            skema bagi hasil.
+
+                        </p>
+
                         <ul class="model-features">
-                            <li><i class="fa-solid fa-check" style="color:var(--accent);"></i> Danai pembuatan mesin fertigasi cerdas bagi petani.</li>
-                            <li><i class="fa-solid fa-check" style="color:var(--accent);"></i> Bagi hasil keuntungan panen bersih (Profit Sharing Berkelanjutan).</li>
-                            <li><i class="fa-solid fa-check" style="color:var(--accent);"></i> Monitoring berkala kondisi fisik tanaman via live SCADA AI vision.</li>
+
+                            <li>
+
+                                <i class="fa-solid fa-check"></i>
+
+                                Pendanaan proyek
+
+                            </li>
+
+                            <li>
+
+                                <i class="fa-solid fa-check"></i>
+
+                                Monitoring perkembangan
+
+                            </li>
+
+                            <li>
+
+                                <i class="fa-solid fa-check"></i>
+
+                                Profit Sharing
+
+                            </li>
+
                         </ul>
+
                     </div>
-                    <div style="margin-top:15px; font-weight:bold; color:var(--accent);">Menjadi Investor Sistem &rarr;</div>
+
                 </div>
+
             </div>
-        </div>
 
-        <div id="registrationSection" class="full-width">
-            <h3 id="form-type-title" style="color: var(--primary); margin-bottom:15px;"><i class="fa-solid fa-file-signature"></i> Formulir Nota Kesepahaman (MoU) Digital</h3>
-            
+        </section>
+
+
+        <!-- ==========================================================
+             FORM REGISTRASI
+        =========================================================== -->
+
+        <section
+            id="registrationSection"
+            class="panel full-width"
+            style="display:none;">
+
+            <div class="panel-title">
+
+                <span>
+
+                    <i class="fa-solid fa-file-signature"></i>
+
+                    Form Pengajuan
+
+                </span>
+
+            </div>
+
             <div class="agreement-box">
-                <p><strong>Pasal 1 - Kesepakatan Operasional:</strong> Seluruh sistem kendali otomasi pertanian dari Tani Cerdas Indonesia dipantau dan disinkronisasikan melalui server AWS Cloud Master untuk menjamin kestabilan penyiraman dan pemberian nutrisi makro-mikro.</p><br>
-                <p><strong>Pasal 2 - Ketentuan Khusus Model:</strong> Pembeli Jual Putus bertanggung jawab atas kebersihan probe sensor. Penyewa diwajibkan menjaga infrastruktur listrik/Wi-Fi lokal kebun. Investor berhak mendapatkan rincian data panen digital berkala tanpa manipulasi fisik lapangan.</p>
+
+                Dengan mengirim formulir ini,
+                Anda menyatakan bahwa informasi
+                yang diberikan benar dan bersedia
+                dihubungi oleh Tim Tani Cerdas Indonesia
+                untuk proses konsultasi, penawaran,
+                maupun penyusunan proposal kerja sama.
+
             </div>
 
-            <label style="display:flex; align-items:center; gap:10px; cursor:pointer; margin-bottom:20px;">
-                <input type="checkbox" id="agreementCheck" style="width:18px; height:18px; accent-color:var(--primary);"> 
-                Saya menyetujui seluruh isi Nota Kesepahaman dan spesifikasi fungsional sistem.
+            <label>
+
+                <input
+                    type="checkbox"
+                    id="agreementCheck">
+
+                Saya menyetujui ketentuan di atas.
+
             </label>
 
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom: 15px;">
-                <input type="text" id="formNama" placeholder="Nama Lengkap / Instansi" style="padding:12px; background:var(--panel-alt); border:1px solid #334155; border-radius:6px; color:#fff;">
-                <input type="text" id="formWA" placeholder="Nomor WhatsApp Aktif" style="padding:12px; background:var(--panel-alt); border:1px solid #334155; border-radius:6px; color:#fff;">
-            </div>
-            <button class="cta-btn" style="margin-top:0;" onclick="submitOrder()">Kirim Pengajuan Resmi</button>
-        </div>
+            <br><br>
+
+            <input
+                id="formNama"
+                type="text"
+                placeholder="Nama Lengkap">
+
+            <br><br>
+
+            <input
+                id="formWA"
+                type="text"
+                placeholder="Nomor WhatsApp">
+
+            <br><br>
+
+            <button
+                class="cta-btn"
+                onclick="submitOrder()">
+
+                Kirim Pengajuan
+
+            </button>
+
+        </section>
 
     </div>
 
-    <a href="https://wa.me/6283177799511?text=Halo%20Tim%20Support%20Tani%20Cerdas%20Indonesia%2C%20saya%20tertarik%20dengan%20sistem%20otomasi%20pertanian%20Anda." class="wa-floating" target="_blank" rel="noopener noreferrer">
+
+    <!-- ==========================================================
+         FLOATING WHATSAPP
+    =========================================================== -->
+
+    <a
+
+        class="wa-floating"
+
+        target="_blank"
+
+        href="https://wa.me/6283177799511?text=Halo%20Tim%20Tani%20Cerdas%20Indonesia%2C%20saya%20ingin%20berkonsultasi.">
+
         <i class="fa-brands fa-whatsapp"></i>
+
     </a>
 
+
+    <!-- ==========================================================
+         TOAST
+    =========================================================== -->
+
     <div id="toastNotif">
-        <i class="fa-solid fa-circle-nodes" style="color:var(--primary); font-size:1.4rem;"></i>
-        <span id="toastText">Memuat jejaring sistem...</span>
+
+        <i class="fa-solid fa-circle-nodes"></i>
+
+        <span id="toastText">
+
+            Memuat Sistem...
+
+        </span>
+
     </div>
 
+
+    <div id="toastWarning">
+
+        ⚠️ Silakan pilih kategori produk terlebih dahulu.
+
+    </div>
+
+
+    <!-- ==========================================================
+         FOOTER
+    =========================================================== -->
+
     <footer>
+
         <div class="footer-container">
-            <p class="copyright">&copy; 2026 Tani Cerdas Indonesia. Hak Cipta Dilindungi.</p>
-            <p class="footer-slogan">Ekosistem Ketahanan Pangan Modern</p>
+
+            <div class="copyright">
+
+                © 2026 Tani Cerdas Indonesia
+
+            </div>
+
+            <div class="footer-slogan">
+
+                Smart Farming • Smart Industry • Smart Environment
+
+            </div>
+
         </div>
+
     </footer>
 
-      <div id="toastWarning">
-    ⚠️ Silakan pilih Kategori Sistem Tani terlebih dahulu.
-</div>
 
-    <script>
-   let perfChart = null;
-let performanceHistory = [85.5, 88.2, 87.0, 92.5]; // Data telemetri dummy fallback
-let selectedInstrumen = '';
-let selectedTipe = '';
-let selectedModelKemitraan = '';
+    <!-- ==========================================================
+         JAVASCRIPT
+    =========================================================== -->
 
-const productHierarchy = {
-    'greenhouse': {
-        'con': { title: 'Smart Greenhouse Lite', desc: 'Sistem pengatur suhu kipas exhaust otomatis serta pengabuan air (fogging) terjadwal untuk menjaga sayuran daun.', depo: 'Rp 12.500.000', tech: 'Microclimate Thermostat V1', profit: '10-15% Efisiensi Yield' },
-        'mod': { title: 'Smart Greenhouse Business <span class="badge-premium">Rekomendasi</span>', desc: 'Otomasi terintegrasi untuk melon premium dengan katup motorik pencampur nutrisi A & B secara real-time.', depo: 'Rp 38.000.000', tech: 'Dynamic EC Tuning Control', profit: '25-40% Hasil Produksi' },
-        'agg': { title: 'Smart Greenhouse Industrial AI', desc: 'Sistem aeroponik tertutup bertekanan tinggi dengan pemantauan defisiensi nutrisi daun berbasis AI vision server.', depo: 'Rp 75.000.000', tech: 'AI Vision & High-Pressure Aeroponic', profit: '55%++ Lonjakan Kuantitas' }
-    },
-    'hydroponic': {
-        'con': { title: 'Vertical Hydroponic Rack Lite', desc: 'Instalasi rak bertingkat untuk keterbatasan lahan perkotaan dengan sistem pompa sirkulasi hemat daya.', depo: 'Rp 8.000.000', tech: 'Continuous Flow Loop', profit: '12-16% Yield/Bulan' },
-        'mod': { title: 'Vertical Farm LED Advanced', desc: 'Dilengkapi lampu penumbuh berspektrum penuh untuk budidaya dalam ruangan tanpa matahari konvensional.', depo: 'Rp 27.000.000', tech: 'Full-Spectrum LED Grow Lights', profit: '20-35% Siklus Dipercepat' },
-        'agg': { title: 'Vertical Enterprise AI Cluster', desc: 'Skema klaster multi-rak terkoneksi robotika pengatur tinggi pancaran LED adatif seiring fase vegetatif.', depo: 'Rp 90.000.000', tech: 'Adaptive Photoperiod Array', profit: '45%++ Efisiensi Ruang' }
-    },
-    'openfield': {
-        'con': { title: 'Open Field Irrigation Sensor Node', desc: 'Pemasangan katup selenoid yang terbuka otomatis berdasarkan kelembapan tanah di perkebunan cabai/bawang.', depo: 'Rp 5.500.000', tech: 'LoRa Soil Moisture Node', profit: '20% Penghematan Air' },
-        'mod': { title: 'Open Field Smart Fertigation Station', desc: 'Stasiun cuaca lokal yang memerintahkan injeksi pupuk ke saluran sprinkler secara prediktif sebelum penguapan ekstrem.', depo: 'Rp 19.500.000', tech: 'Weather-Predictive Fertigation', profit: '30% Efisiensi Pupuk' },
-        'agg': { title: 'Autonomous Open Field Macro Cluster', desc: 'Sistem katup terpusat berbasis satelit tanah nirkabel skala multi-hektar dengan proteksi kelebihan debit air air.', depo: 'Rp 45.000.000', tech: 'Decoupled Hydraulic Network AI', profit: '35%++ Hasil Agribisnis' }
-    },
-    'fertilizer': {
-        'con': { title: 'Pupuk Organik Cair Mikroba Aktif (POC)', desc: 'Konsentrat pupuk cair berbasis bakteri fiksasi nitrogen alami untuk mempercepat gemburnya tanah.', depo: 'Rp 200.000 / Liter', tech: 'Microbial Inoculant Blend', profit: '10-20% Kadar Rendemen' },
-        'mod': { title: 'Paket Bundling POC + Booster Buah', desc: 'Kombinasi asam amino esensial dan nutrisi makro organik siap serap untuk memicu pembungaan serempak.', depo: 'Rp 650.000 / Paket', tech: 'Amino-Acid Enriched Formula', profit: '25-35% Bobot Buah' },
-        'agg': { title: 'Suplai Konsentrat Organik Makro Skala Tonase', desc: 'Pasokan massal formula pupuk cair yang disesuaikan khusus dengan karakteristik sensor tanah lahan Anda.', depo: 'Hubungi Sales', tech: 'Customized Soil-Tailored Nutrient', profit: 'Skalabilitas Tinggi' }
-    }
-};
+    <script src="Assets/js/data/categories.js"></script>
 
-// Fungsi Grafis Chart.js
-function updatePerfGraph(historyData) {
-    const ctx = document.getElementById('perfChart').getContext('2d');
-    const gradient = ctx.createLinearGradient(0, 0, 0, 150);
-    gradient.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
-    gradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
+    <script src="Assets/js/data/solutions.js"></script>
 
-    if (perfChart) perfChart.destroy();
+    <script src="Assets/js/utils.js"></script>
 
-    perfChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: historyData.map((_, i) => i),
-            datasets: [{
-                data: historyData,
-                borderColor: '#10b981',
-                borderWidth: 3,
-                pointRadius: 4,
-                pointBackgroundColor: '#10b981',
-                pointBorderColor: '#060b13',
-                pointBorderWidth: 2,
-                fill: true,
-                backgroundColor: gradient,
-                tension: 0.35
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            animation: { duration: 800 },
-            plugins: { legend: { display: false } },
-            scales: {
-                x: { display: false },
-                y: { display: false }
-            }
-        }
-    });
-}
+    <script src="Assets/js/navigation.js"></script>
 
-// Fungsi Navigasi Seleksi Katalog
-function selectInstrumen(ins) {
-    selectedInstrumen = ins;
-    document.getElementById('level-instrumen').style.display = 'none';
-    document.getElementById('level-tipe').style.display = 'grid';
-    document.getElementById('back-btn').style.display = 'block';
-    document.getElementById('catalog-title').innerText = 'Pilih Paket Otomasi: ' + ins.toUpperCase();
-}
+    <script src="Assets/js/toast.js"></script>
 
-function selectTipe(tipe) {
-    selectedTipe = tipe;
-    const data = productHierarchy[selectedInstrumen][tipe];
-    
-    document.getElementById('level-tipe').style.display = 'none';
-    document.getElementById('level-detail').style.display = 'block';
-    
-    document.getElementById('det-title').innerHTML = data.title;
-    document.getElementById('det-desc').innerText = data.desc;
-    document.getElementById('det-depo').innerText = data.depo;
-    document.getElementById('det-tech').innerText = data.tech;
-    document.getElementById('det-profit').innerText = data.profit;
-    document.getElementById('catalog-title').innerText = 'Spesifikasi Teknis Modul';
-}
+    <script src="Assets/js/catalog.js"></script>
 
-function resetNavigation() {
-    document.getElementById('level-instrumen').style.display = 'grid';
-    document.getElementById('level-tipe').style.display = 'none';
-    document.getElementById('level-detail').style.display = 'none';
-    document.getElementById('back-btn').style.display = 'none';
-    document.getElementById('catalog-title').innerText = 'Pilih Kategori Sistem Tani';
-}
+    <script src="Assets/js/product-detail.js"></script>
 
-function scrollToModels() {
-    const section =
-        document.querySelector(".model-grid");
+    <script src="Assets/js/dashboard.js"></script>
 
-    if(section){
+    <script src="Assets/js/partnership.js"></script>
 
-        section.scrollIntoView({
-            behavior:"smooth"
-        });
+    <script src="Assets/js/form.js"></script>
 
-    }
-    showToastNotif("Silakan pilih Model Kemitraan di bawah ini.");
-}
-
-// Fungsi Memilih Model Kemitraan & Memunculkan Form MoU
-function selectModel(model){
-
-    if(!activeSolution){
-
-        showToastWarning(
-            "Silakan pilih salah satu produk terlebih dahulu."
-        );
-
-        document
-        .getElementById("catalogCategorySection")
-        .scrollIntoView({
-            behavior:"smooth"
-        });
-
-        return;
-    }
-
-      
-    // 2. Jika validasi lolos, set model kemitraan yang dipilih
-    selectedModelKemitraan = model;
-    const formSection = document.getElementById('registrationSection');
-    const formTitle = document.getElementById('form-type-title');
-    
-    formSection.style.display = 'block';
-    formSection.scrollIntoView({ behavior: 'smooth' });
-
-    let modelText = "";
-    if (model === 'jual') modelText = "Jual Putus";
-    if (model === 'sewa') modelText = "Sewa Alat IoT";
-    if (model === 'investor') modelText = "Kemitraan Investor";
-
-    formTitle.innerHTML = `<i class="fa-solid fa-file-signature"></i> Formulir MoU Digital - Skema ${modelText}`;
-}
-
-// ========================================================
-// FUNGSI 1: MEMUNCUKKAN TOAST WARNING (Kuning - Pojok Kanan Bawah)
-// ========================================================
-function showToastWarning(message) {
-    const toast = document.getElementById('toastWarning');
-    toast.innerHTML = message;
-    toast.classList.add('show');
-    toast.style.pointerEvents = 'auto'; // Mengaktifkan interaksi jika diperlukan
-    
-    if (window.warningTimeout) {
-        clearTimeout(window.warningTimeout);
-    }
-    
-    window.warningTimeout = setTimeout(() => {
-        toast.classList.remove('show');
-        toast.style.pointerEvents = 'none';
-    }, 3000);
-}
-
-// ========================================================
-// FUNGSI 2: MEMUNCUKKAN TOAST NOTIFIKASI SISTEM (Hijau - Pojok Kiri Bawah)
-// ========================================================
-function showToastNotif(text) {
-    const toast = document.getElementById('toastNotif');
-    document.getElementById('toastText').innerText = text;
-    toast.classList.add('active'); // Perbaikan metode pemanggilan classList
-    
-    if (window.notifTimeout) {
-        clearTimeout(window.notifTimeout);
-    }
-
-    window.notifTimeout = setTimeout(() => { 
-        toast.classList.remove('active'); 
-    }, 4000);
-}
-
-// Pengiriman Form Pengajuan Resmi langsung ke Google Sheets & WhatsApp
-function submitOrder() {
-    const check = document.getElementById('agreementCheck').checked;
-    const nama = document.getElementById('formNama').value.trim();
-    const wa = document.getElementById('formWA').value.trim();
-
-    // 1. Validasi Input Form
-    if (!check) {
-        showToastWarning("Anda wajib menyetujui Nota Kesepahaman (MoU) terlebih dahulu!");
-        return;
-    }
-    if (nama === "" || wa === "") {
-        showToastWarning("Nama dan nomor WhatsApp aktif wajib diisi!");
-        return;
-    }
-
-    // Tampilkan notifikasi proses dimulai
-    showToastNotif("Mengompilasi & menyimpan berkas pengajuan Anda...");
-
-    // Ambil data produk dan skema kemitraan aktif
-    const produkData = activeSolution;
-    let modelText = selectedModelKemitraan === 'jual' ? 'Jual Putus' : (selectedModelKemitraan === 'sewa' ? 'Sewa Alat' : 'Investor');
-    const namaSistemBersih = produkData.product.name.replace(/<[^>]*>?/gm, ''); // Membersihkan tag HTML/badge premium
-
-    // 2. Siapkan Objek Data untuk Google Sheets
-    const dataKeSheets = {
-        nama: nama,
-        whatsapp: wa,
-        sistem: namaSistemBersih,
-        skema: modelText,
-        nilai: formatPrice(
-    produkData.pricing.startingPrice
-)
-    };
-
-    // GANTI INI dengan URL Web App Google Apps Script Anda dari Langkah 1
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwNE_HIwNSa3yA3JGcNAHxgi1ZJOgPLiFxV7J2tqmb7vjuKKXTw6xDrpnPlMwsfWmEe/exec";
-
-    // 3. Mengirim data ke Google Sheets menggunakan Fetch API secara asynchronous
-    fetch(WEB_APP_URL, {
-        method: "POST",
-        mode: "no-cors", // Mengatasi masalah CORS kebijakan browser cross-origin
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(dataKeSheets)
-    })
-    .then(() => {
-        // 4. Setelah data berhasil terkirim ke latar belakang (Google Sheets), picu redirect WhatsApp
-        showToastNotif("Data tersinkronisasi! Mengalihkan ke WhatsApp...");
-        
-        setTimeout(() => {
-            const waMessage = `Halo Tim Tani Cerdas Indonesia,\r\n\r\nSaya telah menyetujui MoU Digital di website.\r\n\r\n*Detail Pengajuan:*\r\n- Nama/Instansi: ${nama}\r\n- WhatsApp: ${wa}\r\n- Sistem Dipilih: ${namaSistemBersih}\r\n- Skema Kemitraan: ${modelText}\r\n- Nilai Produk: ${produkData.formatPrice(produkData.pricing.startingPrice)}\r\n\r\nMohon proses pengajuan resmi saya, terima kasih.`;
-            
-            window.open(`https://wa.me/6283177799511?text=${encodeURIComponent(waMessage)}`, '_blank');
-        }, 1000);
-    })
-    .catch(error => {
-        console.error("Gagal sinkronisasi data:", error);
-        showToastWarning("Terjadi gangguan koneksi server, silakan coba lagi.");
-    });
-}
-
-// Urgency Banner Countdown Timer
-let timeAlloc = 3600;
-setInterval(() => {
-    timeAlloc--;
-    if(timeAlloc < 0) timeAlloc = 3600;
-    let mins = Math.floor(timeAlloc / 60);
-    let secs = timeAlloc % 60;
-    document.getElementById('countdown').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-}, 1000);
-
-// Simulasi Pengisian Data Real-Time Telemetri SCADA IoT
-setTimeout(() => {
-    document.getElementById('scada-status').innerHTML = '<span class="status-indicator"></span> Cloud Live Connected';
-    document.getElementById('target-crop').innerText = 'Smart Greenhouse B';
-    document.getElementById('val-ec').innerText = '1.82 mS/cm';
-    document.getElementById('val-ph').innerText = '6.21 pH';
-    document.getElementById('val-efficiency').innerText = '94.2%';
-    document.getElementById('val-error').innerText = '0.04%';
-    document.getElementById('val-cycles').innerText = '32 / Hari';
-    document.getElementById('val-yield').innerText = '98.7%';
-    updatePerfGraph([85.5, 88.2, 87.0, 92.5, 94.2]);
-    showToastNotif("Koneksi IoT Master Server Berhasil didirikan!");
-}, 2000);
-
-// Inisialisasi Grafik Pertama Kali
-window.onload = function() {
-    updatePerfGraph(performanceHistory);
-};
-
-// FORCE LAYOUT REPAINT SAAT ROTASI HP
-window.addEventListener("orientationchange", function() {
-    document.body.style.display = 'none';
-    setTimeout(function() {
-        document.body.style.display = 'block';
-        if(perfChart) perfChart.resize();
-    }, 30);
-});
-    </script>
-<script src="Assets/js/data/categories.js"></script>
-<script src="Assets/js/data/solutions.js"></script>
-<script src="Assets/js/catalog.js"></script>
+    <script src="Assets/js/app.js"></script>
 
 </body>
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
