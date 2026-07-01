@@ -633,6 +633,11 @@
 
 input{
 
+ input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="number"]{
+
     width:100%;
 
     padding:14px 16px;
@@ -653,6 +658,32 @@ input{
 
 }
 
+input[type="text"]::placeholder,
+input[type="tel"]::placeholder,
+input[type="email"]::placeholder,
+input[type="number"]::placeholder{
+
+    color:#94a3b8;
+
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus{
+
+    border-color:var(--primary);
+
+    background:#223043;
+
+    color:#ffffff;
+
+    box-shadow:0 0 0 3px rgba(16,185,129,.15);
+
+}
+
+}
+
 input::placeholder{
 
     color:#94a3b8;
@@ -668,5 +699,21 @@ input:focus{
     color:#ffffff;
 
     box-shadow:0 0 0 3px rgba(16,185,129,.15);
+
+}
+
+input[type="checkbox"]{
+
+    width:18px;
+
+    height:18px;
+
+    margin:0;
+
+    accent-color:var(--primary);
+
+    cursor:pointer;
+
+    flex-shrink:0;
 
 }
