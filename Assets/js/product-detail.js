@@ -1,198 +1,200 @@
-function renderSolution(slug){
+/* ==========================================================
+   TANI CERDAS INDONESIA
+   PRODUCT DETAIL MODULE
+========================================================== */
 
-   activeSolution = getSolution(slug);
+/* ==========================================================
+   RENDER PRODUCT
+========================================================== */
 
-    if(!activeSolution) return;
+function renderSolution(slug) {
 
-    document.getElementById("solutionTitle").innerHTML =
+    activeSolution = getSolution(slug);
+
+    if (!activeSolution) return;
+
+    // Hero
+    $("solutionHero").src = activeSolution.media.hero;
+    $("solutionHero").alt = activeSolution.product.marketingName;
+
+    // Category
+    $("solutionCategory").textContent =
+        Categories[activeSolution.category].name;
+
+    // Title
+    $("solutionTitle").textContent =
         activeSolution.product.name;
 
-    document.getElementById("solutionMarketingName").innerHTML =
+    // Marketing Name
+    $("solutionMarketingName").textContent =
         activeSolution.product.slogan;
 
-    document.getElementById("solutionOverview").innerHTML =
+    // Overview
+    $("solutionOverview").textContent =
         activeSolution.product.description;
 
-    document.getElementById("solutionHero").src =
-        activeSolution.media.hero;
-
-    document.getElementById("solutionPrice").innerHTML =
+    // Price
+    $("solutionPrice").textContent =
         formatPrice(activeSolution.pricing.startingPrice);
 
+    // Components
     renderBadges();
 
     renderHighlights();
 
-    renderFeatures();
+    renderList(
+        "solutionFeatures",
+        activeSolution.features,
+        "✅"
+    );
 
-    renderBenefits();
+    renderList(
+        "solutionBenefits",
+        activeSolution.benefits,
+        "🌿"
+    );
 
-    renderWorkflow();
+    renderList(
+        "solutionWorkflow",
+        activeSolution.workflow,
+        "➜"
+    );
 
-    renderPackage();
+    renderSection(
+        "packageSection",
+        "solutionPackage",
+        activeSolution.package,
+        "📦"
+    );
 
-    renderFaq();
-
-    
-
-}
-
-function renderBadges(){
-
-    const box=document.getElementById("solutionBadges");
-
-    box.innerHTML="";
-
-    activeSolution.badges.forEach(item=>{
-
-        box.innerHTML+=`
-            <span>${item}</span>
-        `;
-
-    });
-
-}
-
-function renderHighlights(){
-
-    const box=
-    document.getElementById("solutionHighlights");
-
-    box.innerHTML="";
-
-    activeSolution.highlights.forEach(item=>{
-
-        box.innerHTML+=`
-            <div>${item}</div>
-        `;
-
-    });
+    renderFAQ();
 
 }
 
-function renderFeatures(){
 
-    const box =
-        document.getElementById("solutionFeatures");
+/* ==========================================================
+   BADGES
+========================================================== */
 
-    box.innerHTML="";
+function renderBadges() {
 
-    activeSolution.features.forEach(item=>{
-
-        box.innerHTML += `
-            <div class="catalog-item">
-                ✅ ${item}
-            </div>
-        `;
-
-    });
+    $("solutionBadges").innerHTML =
+        activeSolution.badges
+            .map(item => `<span>${item}</span>`)
+            .join("");
 
 }
 
-function renderBenefits(){
 
-    const box =
-        document.getElementById("solutionBenefits");
+/* ==========================================================
+   HIGHLIGHTS
+========================================================== */
 
-    box.innerHTML="";
+function renderHighlights() {
 
-    activeSolution.benefits.forEach(item=>{
-
-        box.innerHTML += `
-            <div class="catalog-item">
-                🌿 ${item}
-            </div>
-        `;
-
-    });
+    $("solutionHighlights").innerHTML =
+        activeSolution.highlights
+            .map(item => `
+                <div>${item}</div>
+            `)
+            .join("");
 
 }
 
-function renderWorkflow(){
 
-    const box =
-        document.getElementById("solutionWorkflow");
+/* ==========================================================
+   GENERIC LIST
+========================================================== */
 
-    box.innerHTML="";
+function renderList(targetId, data, icon) {
 
-    activeSolution.workflow.forEach(item=>{
+    const target = $(targetId);
 
-        box.innerHTML += `
-            <div class="catalog-item">
-                ➜ ${item}
-            </div>
-        `;
+    if (!target) return;
 
-    });
+    target.innerHTML =
+        (data || [])
+            .map(item => `
+                <div class="catalog-item">
+                    ${icon} ${item}
+                </div>
+            `)
+            .join("");
 
 }
 
-function renderPackage(){
 
-    const section =
-        document.getElementById("packageSection");
+/* ==========================================================
+   OPTIONAL SECTION
+========================================================== */
 
-    const box =
-        document.getElementById("solutionPackage");
+function renderSection(
+    sectionId,
+    targetId,
+    data,
+    icon
+) {
 
-    box.innerHTML="";
+    const section = $(sectionId);
 
-    if(
-        !activeSolution.package ||
-        activeSolution.package.length===0
-    ){
-        section.style.display="none";
+    if (!section) return;
+
+    if (!data || data.length === 0) {
+
+        section.style.display = "none";
+
         return;
+
     }
 
-    section.style.display="block";
+    section.style.display = "block";
 
-    activeSolution.package.forEach(item=>{
-
-        box.innerHTML += `
-            <div class="catalog-item">
-                📦 ${item}
-            </div>
-        `;
-
-    });
+    renderList(
+        targetId,
+        data,
+        icon
+    );
 
 }
 
-function renderFaq(){
 
-    const section =
-        document.getElementById("faqSection");
+/* ==========================================================
+   FAQ
+========================================================== */
 
-    const box =
-        document.getElementById("solutionFaq");
+function renderFAQ() {
 
-    box.innerHTML="";
+    const section = $("faqSection");
 
-    if(
-        !activeSolution.faq ||
-        activeSolution.faq.length===0
-    ){
-        section.style.display="none";
+    const target = $("solutionFaq");
+
+    const faq = activeSolution.faq;
+
+    if (!faq || faq.length === 0) {
+
+        section.style.display = "none";
+
         return;
+
     }
 
-    section.style.display="block";
+    section.style.display = "block";
 
-    activeSolution.faq.forEach(item=>{
+    target.innerHTML =
+        faq.map(item => `
 
-        box.innerHTML += `
+            <div class="faq-item">
 
-        <div class="faq-item">
+                <h4>
+                    ${item.question}
+                </h4>
 
-            <h4>${item.question}</h4>
+                <p>
+                    ${item.answer}
+                </p>
 
-            <p>${item.answer}</p>
+            </div>
 
-        </div>
-
-        `;
-
-    });
+        `).join("");
 
 }
