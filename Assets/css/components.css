@@ -638,9 +638,7 @@
    FORM INPUT
 ========================================== */
 
-input{
-
- input[type="text"],
+input[type="text"],
 input[type="tel"],
 input[type="email"],
 input[type="number"]{
@@ -689,23 +687,24 @@ input[type="number"]:focus{
 
 }
 
-}
-
-input::placeholder{
-
-    color:#94a3b8;
-
-}
-
-input:focus{
-
-    border-color:var(--primary);
-
-    background:#223043;
+input[type="text"]:not(:placeholder-shown),
+input[type="tel"]:not(:placeholder-shown),
+input[type="email"]:not(:placeholder-shown),
+input[type="number"]:not(:placeholder-shown){
 
     color:#ffffff;
 
-    box-shadow:0 0 0 3px rgba(16,185,129,.15);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus{
+
+    -webkit-text-fill-color:#ffffff;
+
+    -webkit-box-shadow:0 0 0 1000px #1e293b inset;
+
+    transition:background-color 9999s ease-in-out 0s;
 
 }
 
