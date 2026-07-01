@@ -1,95 +1,116 @@
 /* ==========================================================
    TANI CERDAS INDONESIA
-   SOLUTION CATALOG ENGINE
+   CATALOG MODULE
 ========================================================== */
 
 let activeSolution = null;
 
+/* ==========================================================
+   HELPER
+========================================================== */
 
+const $ = (id) => document.getElementById(id);
 
-function renderCategories(){
+function showSection(sectionId) {
 
-    const container =
-        document.getElementById("solutionCategories");
+    $("catalogCategorySection").style.display = "none";
+    $("catalogProductSection").style.display = "none";
+    $("catalogDetailSection").style.display = "none";
 
-    container.innerHTML="";
+    $(sectionId).style.display = "block";
 
-    Object.values(Categories).forEach(category=>{
+}
 
-        const card=document.createElement("button");
+/* ==========================================================
+   CATEGORY
+========================================================== */
 
-        card.className="category-card";
+function renderCategories() {
 
-        card.innerHTML = `
-<div class="category-icon">
-    ${category.icon}
-</div>
+    const container = $("solutionCategories");
 
-<div class="category-title">
-    ${category.name}
-</div>
+    container.innerHTML = "";
 
-<div class="category-desc">
-    ${category.description}
-</div>
-`;
+    Object.values(Categories).forEach(category => {
 
-        card.onclick=()=>{
+        container.insertAdjacentHTML(
+            "beforeend",
 
-            renderProducts(category.id);
+            `
+            <button
+                class="category-card"
+                onclick="renderProducts('${category.id}')">
 
-        };
+                <div class="category-icon">
+                    ${category.icon}
+                </div>
 
-        container.appendChild(card);
+                <div class="category-title">
+                    ${category.name}
+                </div>
+
+                <div class="category-desc">
+                    ${category.description}
+                </div>
+
+            </button>
+            `
+        );
 
     });
 
 }
 
-function renderProducts(categoryId){
+/* ==========================================================
+   PRODUCT LIST
+========================================================== */
 
-    const section =
-        document.getElementById("catalogProductSection");
+function renderProducts(categoryId) {
 
-    const list =
-        document.getElementById("solutionProductList");
+    showSection("catalogProductSection");
 
-    const title =
-        document.getElementById("productSectionTitle");
+    const category = Categories[categoryId];
 
-    document.getElementById("catalogCategorySection")
-        .style.display="none";
-
-    document.getElementById("catalogDetailSection")
-        .style.display="none";
-
-    section.style.display="block";
-
-    const category =
-        Categories[categoryId];
-
-    title.innerHTML =
+    $("productSectionTitle").textContent =
         "Produk " + category.name;
 
-    list.innerHTML="";
+    const list = $("solutionProductList");
 
-    const products =
-        Solutions.filter(
-            item=>item.category===categoryId
+    list.innerHTML = "";
+
+    const products = Solutions.filter(item =>
+        item.category === categoryId
+    );
+
+    products.forEach(product => {
+
+        list.insertAdjacentHTML(
+            "beforeend",
+            createProductCard(product)
         );
 
-    products.forEach(product=>{
+    });
 
-    list.innerHTML += `
+}
 
-    <div class="catalog-product-card"
-         onclick="openProduct('${product.slug}')">
+/* ==========================================================
+   PRODUCT CARD
+========================================================== */
+
+function createProductCard(product) {
+
+    return `
+
+    <div
+        class="catalog-product-card"
+        onclick="openProduct('${product.slug}')">
 
         <div style="position:relative">
 
             <img
                 src="${product.media.thumbnail}"
-                class="catalog-thumb">
+                class="catalog-thumb"
+                alt="${product.product.marketingName}">
 
             <div class="catalog-badge">
 
@@ -139,22 +160,43 @@ function renderProducts(categoryId){
 
     `;
 
-});
-
 }
 
-function openProduct(slug){
+/* ==========================================================
+   PRODUCT DETAIL
+========================================================== */
 
-    document.getElementById("catalogProductSection")
-        .style.display="none";
+function openProduct(slug) {
 
-    document.getElementById("catalogDetailSection")
-        .style.display="block";
+    showSection("catalogDetailSection");
 
     renderSolution(slug);
 
 }
 
+/* ==========================================================
+   NAVIGATION
+========================================================== */
 
+function backToCategories() {
 
+    showSection("catalogCategorySection");
+
+}
+
+function backToProducts() {
+
+    showSection("catalogProductSection");
+
+}
+
+/* ==========================================================
+   INITIALIZE
+========================================================== */
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    renderCategories();
+
+});
 
