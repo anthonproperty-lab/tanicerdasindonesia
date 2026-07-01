@@ -1,83 +1,260 @@
+/* ==========================================================
+   TANI CERDAS INDONESIA
+   DASHBOARD ENGINE
+========================================================== */
+
 let perfChart = null;
 
-let performanceHistory = [
+const performanceHistory = [
     85.5,
     88.2,
     87.0,
     92.5
 ];
 
-function updatePerfGraph(historyData) {
-    const ctx = document.getElementById('perfChart').getContext('2d');
-    const gradient = ctx.createLinearGradient(0, 0, 0, 150);
-    gradient.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
-    gradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
 
-    if (perfChart) perfChart.destroy();
+/* ==========================================================
+   PERFORMANCE CHART
+========================================================== */
+
+function initPerformanceChart() {
+
+    updatePerformanceChart(performanceHistory);
+
+}
+
+function updatePerformanceChart(history) {
+
+    const canvas = document.getElementById("perfChart");
+
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+
+    const gradient = ctx.createLinearGradient(0, 0, 0, 160);
+
+    gradient.addColorStop(0, "rgba(16,185,129,.40)");
+    gradient.addColorStop(1, "rgba(16,185,129,0)");
+
+    if (perfChart) {
+
+        perfChart.destroy();
+
+    }
 
     perfChart = new Chart(ctx, {
-        type: 'line',
+
+        type: "line",
+
         data: {
-            labels: historyData.map((_, i) => i),
-            datasets: [{
-                data: historyData,
-                borderColor: '#10b981',
-                borderWidth: 3,
-                pointRadius: 4,
-                pointBackgroundColor: '#10b981',
-                pointBorderColor: '#060b13',
-                pointBorderWidth: 2,
-                fill: true,
-                backgroundColor: gradient,
-                tension: 0.35
-            }]
+
+            labels: history.map((_, index) => index + 1),
+
+            datasets: [
+
+                {
+
+                    data: history,
+
+                    borderColor: "#10b981",
+
+                    backgroundColor: gradient,
+
+                    fill: true,
+
+                    borderWidth: 3,
+
+                    pointRadius: 4,
+
+                    pointBackgroundColor: "#10b981",
+
+                    pointBorderColor: "#060b13",
+
+                    pointBorderWidth: 2,
+
+                    tension: .35
+
+                }
+
+            ]
+
         },
+
         options: {
+
             responsive: true,
+
             maintainAspectRatio: false,
-            animation: { duration: 800 },
-            plugins: { legend: { display: false } },
+
+            plugins: {
+
+                legend: {
+
+                    display: false
+
+                }
+
+            },
+
             scales: {
-                x: { display: false },
-                y: { display: false }
+
+                x: {
+
+                    display: false
+
+                },
+
+                y: {
+
+                    display: false
+
+                }
+
             }
+
         }
+
     });
+
 }
 
 
-let timeAlloc = 3600;
-setInterval(() => {
-    timeAlloc--;
-    if(timeAlloc < 0) timeAlloc = 3600;
-    let mins = Math.floor(timeAlloc / 60);
-    let secs = timeAlloc % 60;
-    document.getElementById('countdown').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-}, 1000);
+/* ==========================================================
+   COUNTDOWN
+========================================================== */
 
-// Simulasi Pengisian Data Real-Time Telemetri SCADA IoT
-setTimeout(() => {
-    document.getElementById('scada-status').innerHTML = '<span class="status-indicator"></span> Cloud Live Connected';
-    document.getElementById('target-crop').innerText = 'Smart Greenhouse B';
-    document.getElementById('val-ec').innerText = '1.82 mS/cm';
-    document.getElementById('val-ph').innerText = '6.21 pH';
-    document.getElementById('val-efficiency').innerText = '94.2%';
-    document.getElementById('val-error').innerText = '0.04%';
-    document.getElementById('val-cycles').innerText = '32 / Hari';
-    document.getElementById('val-yield').innerText = '98.7%';
-    updatePerfGraph([85.5, 88.2, 87.0, 92.5, 94.2]);
-    showToastNotif("Koneksi IoT Master Server Berhasil didirikan!");
-}, 2000);
+let countdownValue = 3600;
 
-// Inisialisasi Grafik Pertama Kali
-window.onload = function() {
-    updatePerfGraph(performanceHistory);
-};
+function startCountdown() {
 
-window.addEventListener("orientationchange", function() {
-    document.body.style.display = 'none';
-    setTimeout(function() {
-        document.body.style.display = 'block';
-        if(perfChart) perfChart.resize();
-    }, 30);
+    const counter = document.getElementById("countdown");
+
+    if (!counter) return;
+
+    setInterval(() => {
+
+        countdownValue--;
+
+        if (countdownValue < 0) {
+
+            countdownValue = 3600;
+
+        }
+
+        const minute = Math.floor(countdownValue / 60);
+
+        const second = countdownValue % 60;
+
+        counter.textContent =
+            `${String(minute).padStart(2,"0")}:${String(second).padStart(2,"0")}`;
+
+    },1000);
+
+}
+
+
+/* ==========================================================
+   SIMULASI TELEMETRY
+========================================================== */
+
+function loadTelemetryDemo() {
+
+    setTimeout(() => {
+
+        setText("scada-status",
+            `<span class="status-indicator"></span> Cloud Live Connected`,
+            true
+        );
+
+        setText("target-crop","Smart Greenhouse B");
+
+        setText("val-ec","1.82 mS/cm");
+
+        setText("val-ph","6.21 pH");
+
+        setText("val-efficiency","94.2%");
+
+        setText("val-error","0.04%");
+
+        setText("val-cycles","32 / Hari");
+
+        setText("val-yield","98.7%");
+
+        updatePerformanceChart([
+
+            85.5,
+            88.2,
+            87.0,
+            92.5,
+            94.2
+
+        ]);
+
+        if (typeof showToastNotif === "function") {
+
+            showToastNotif(
+                "Koneksi IoT Master Server berhasil."
+            );
+
+        }
+
+    },2000);
+
+}
+
+
+/* ==========================================================
+   HELPERS
+========================================================== */
+
+function setText(id,value,isHtml=false){
+
+    const element = document.getElementById(id);
+
+    if(!element) return;
+
+    if(isHtml){
+
+        element.innerHTML=value;
+
+    }else{
+
+        element.textContent=value;
+
+    }
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+window.addEventListener("orientationchange",()=>{
+
+    if(perfChart){
+
+        setTimeout(()=>{
+
+            perfChart.resize();
+
+        },100);
+
+    }
+
 });
+
+
+/* ==========================================================
+   INITIALIZER
+========================================================== */
+
+function initDashboard(){
+
+    initPerformanceChart();
+
+    startCountdown();
+
+    loadTelemetryDemo();
+
+}
