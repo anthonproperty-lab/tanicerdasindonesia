@@ -49,7 +49,8 @@ function submitOrder() {
         showToastNotif("Data tersinkronisasi! Mengalihkan ke WhatsApp...");
         
         setTimeout(() => {
-            const waMessage = `Halo Tim Tani Cerdas Indonesia,\r\n\r\nSaya telah menyetujui MoU Digital di website.\r\n\r\n*Detail Pengajuan:*\r\n- Nama/Instansi: ${nama}\r\n- WhatsApp: ${wa}\r\n- Sistem Dipilih: ${namaSistemBersih}\r\n- Skema Kemitraan: ${modelText}\r\n- Nilai Produk: ${produkData.formatPrice(produkData.pricing.startingPrice)}\r\n\r\nMohon proses pengajuan resmi saya, terima kasih.`;
+            const waMessage = `Halo Tim Tani Cerdas Indonesia,\r\n\r\nSaya telah menyetujui MoU Digital di website.\r\n\r\n*Detail Pengajuan:*\r\n- Nama/Instansi: ${nama}\r\n- WhatsApp: ${wa}\r\n- Sistem Dipilih: ${namaSistemBersih}\r\n- Skema Kemitraan: ${modelText}\r\n- Nilai Produk: ${formatPrice(
+    produkData.pricing.startingPrice)}\r\n\r\nMohon proses pengajuan resmi saya, terima kasih.`;
             
             window.open(`https://wa.me/6283177799511?text=${encodeURIComponent(waMessage)}`, '_blank');
         }, 1000);
