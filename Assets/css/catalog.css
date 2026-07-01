@@ -1,0 +1,501 @@
+/* ==========================================================
+   CATALOG
+   Tani Cerdas Indonesia
+========================================================== */
+
+
+/* ==========================================
+   CATEGORY GRID
+========================================== */
+
+.catalog-category-grid{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:22px;
+    margin-top:25px;
+
+}
+
+.category-card{
+
+    position:relative;
+    overflow:hidden;
+
+    background:linear-gradient(145deg,#17212f,#101826);
+
+    border:1px solid #263445;
+
+    border-radius:20px;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.category-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 18px 40px rgba(16,185,129,.18);
+
+}
+
+.category-image{
+
+    width:100%;
+
+    height:170px;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+.category-content{
+
+    padding:20px;
+
+}
+
+.category-icon{
+
+    font-size:44px;
+
+    margin-bottom:12px;
+
+}
+
+.category-title{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#fff;
+
+    margin-bottom:8px;
+
+}
+
+.category-desc{
+
+    color:var(--muted);
+
+    font-size:14px;
+
+    line-height:1.7;
+
+    min-height:70px;
+
+}
+
+.category-action{
+
+    margin-top:18px;
+
+}
+
+.category-btn{
+
+    width:100%;
+
+    border:none;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    transition:.25s;
+
+}
+
+.category-btn:hover{
+
+    background:var(--primary-hover);
+
+}
+
+
+/* ==========================================
+   PRODUCT GRID
+========================================== */
+
+.catalog-product-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+
+    gap:24px;
+
+    margin-top:25px;
+
+}
+
+
+/* ==========================================
+   PRODUCT CARD
+========================================== */
+
+.catalog-product-card{
+
+    background:#17212f;
+
+    border:1px solid #263445;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.catalog-product-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 22px 45px rgba(16,185,129,.20);
+
+}
+
+.catalog-thumb{
+
+    width:100%;
+
+    height:210px;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+.catalog-card-body{
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:20px;
+
+    flex:1;
+
+}
+
+.catalog-card-title{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#fff;
+
+    margin-bottom:10px;
+
+}
+
+.catalog-card-desc{
+
+    color:var(--muted);
+
+    line-height:1.7;
+
+    font-size:14px;
+
+    flex:1;
+
+}
+
+.catalog-price{
+
+    margin-top:18px;
+
+    color:var(--primary);
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+.catalog-price small{
+
+    display:block;
+
+    font-size:13px;
+
+    color:var(--muted);
+
+    margin-bottom:4px;
+
+}
+
+
+/* ==========================================
+   BADGE
+========================================== */
+
+.catalog-badge{
+
+    position:absolute;
+
+    top:15px;
+
+    left:15px;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    padding:6px 14px;
+
+    border-radius:30px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+.catalog-badge-premium{
+
+    position:absolute;
+
+    top:15px;
+
+    right:15px;
+
+    background:var(--warning);
+
+    color:#111;
+
+    padding:6px 12px;
+
+    border-radius:30px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+
+/* ==========================================
+   DETAIL BUTTON
+========================================== */
+
+.catalog-detail-btn{
+
+    margin-top:22px;
+
+    width:100%;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+}
+
+.catalog-detail-btn:hover{
+
+    background:var(--primary-hover);
+
+}
+
+
+/* ==========================================
+   BREADCRUMB
+========================================== */
+
+.catalog-breadcrumb{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-bottom:20px;
+
+    font-size:14px;
+
+}
+
+.breadcrumb-link{
+
+    color:var(--primary);
+
+    cursor:pointer;
+
+    font-weight:700;
+
+}
+
+.breadcrumb-link:hover{
+
+    text-decoration:underline;
+
+}
+
+.catalog-breadcrumb span:last-child{
+
+    color:#94a3b8;
+
+}
+
+
+/* ==========================================
+   DETAIL PAGE
+========================================== */
+
+.solution-viewer{
+
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:24px;
+
+}
+
+.viewer-image img{
+
+    width:100%;
+
+    border-radius:18px;
+
+    display:block;
+
+}
+
+.solution-category{
+
+    display:inline-block;
+
+    background:rgba(16,185,129,.12);
+
+    color:var(--primary);
+
+    padding:6px 14px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+}
+
+.badge-container{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin:18px 0;
+
+}
+
+.badge-container span{
+
+    background:#243244;
+
+    color:#fff;
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+}
+
+.highlight-container{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:12px;
+
+    margin:20px 0;
+
+}
+
+.highlight-container div{
+
+    background:#1b2636;
+
+    border-radius:10px;
+
+    padding:14px;
+
+    text-align:center;
+
+    font-size:14px;
+
+}
+
+.price-box{
+
+    margin:25px 0;
+
+}
+
+.price-box small{
+
+    display:block;
+
+    color:var(--muted);
+
+}
+
+.button-group{
+
+    display:flex;
+
+    gap:14px;
+
+    flex-wrap:wrap;
+
+}
