@@ -1,0 +1,19 @@
+/* ==========================================
+   UTILITIES
+========================================== */
+
+function formatPrice(value){
+
+    return new Intl.NumberFormat("id-ID",{
+        style:"currency",
+        currency:"IDR",
+        maximumFractionDigits:0
+    }).format(value);
+
+}
+
+function getSolution(slug){
+
+    return Solutions.find(item=>item.slug===slug);
+
+}
